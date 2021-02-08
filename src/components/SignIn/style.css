@@ -1,0 +1,8 @@
+.sign-in-form {
+  width: 90%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 3rem 8rem;
+  margin: 3rem auto;
+  border: solid 0.5px #2e2d2d;
+}
