@@ -1,15 +1,15 @@
 import React from "react";
-import TopMenu from "./components/TopMenu";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LogIn from './components/LogIn';
+import Profile from './containers/Profile';
 
 const App = () => {
 
  return(
    <React.Fragment>
-     <TopMenu></TopMenu>
      <Router>
-       <Route path ='/log-in' component ={LogIn}></Route>
+       <Route path ='/log-in' exact component ={LogIn}></Route>
+       <Route path ='/Profile' component = {Profile}></Route>
      </Router>
    </React.Fragment>
  );
