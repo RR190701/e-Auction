@@ -1,0 +1,14 @@
+.raise:hover{
+  background: purple !important;
+  color: white;
+}
+.raise:focus {
+ background: #ffffff;
+}
+.header{
+  color: #ffffff !important;
+}
+hr{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
