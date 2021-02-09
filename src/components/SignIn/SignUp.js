@@ -1,60 +1,65 @@
 import React from 'react';
+import Paper from '@material-ui/core/Paper';
 import './style.css';
 
 const SignUp = () => {
     return ( 
-        <div className ="sign-in-form">
+        <Paper className="sign-in-form" elevation={3}>
           
-          <h1 className="text-center pb-5">Sign Up</h1>
-  <form class="row g-3">
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">First Name</label>
-    <input type="email" class="form-control" id="inputEmail4"></input>
+          <h1 className="text-center pb-5 sign-in-heading">SIGN IN</h1>
+  <form className="row g-3">
+  <div className="col-md-6">
+    <label for="inputFirstName" className="form-label">First Name</label>
+    <input type="email" className="form-control" id="inputFirstName"></input>
   </div>
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Last Name</label>
-    <input type="email" class="form-control" id="inputEmail4"></input>
+  <div className="col-md-6">
+    <label for="inputLastName" className="form-label">Last Name</label>
+    <input type="email" className="form-control" id="inputLastName"></input>
   </div>
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Contact Number</label>
-    <input type="email" class="form-control" id="inputEmail4"></input>
+  <div className="col-md-6">
+    <label for="Contact" className="form-label">Contact Number</label>
+    <input type="email" className="form-control" id="Contact"></input>
   </div>
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Email ID</label>
-    <input type="email" class="form-control" id="inputEmail4"></input>
+  <div className="col-md-6">
+    <label for="inputEmail4" className="form-label">Email ID</label>
+    <input type="email" className="form-control" id="inputEmail4"></input>
   </div>
-  <div class="col-12">
-    <label for="inputAddress" class="form-label">Full Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"></input>
+  <div className="col-md-9">
+    <label for="inputAddress" className="form-label">Full Address</label>
+    <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St"></input>
   </div>
-  <div class="col-md-6">
-    <label for="inputCity" class="form-label">City</label>
-    <input type="text" class="form-control" id="inputCity"></input>
+  <div className="col-md-3">
+    <label for="inputAge" className="form-label">Age</label>
+    <input type="text" className="form-control" id="inputAge"></input>
   </div>
-  <div class="col-md-4">
-    <label for="inputState" class="form-label">State</label>
-    <select id="inputState" class="form-select">
+  <div className="col-md-6">
+    <label for="inputCity" className="form-label">City</label>
+    <input type="text" className="form-control" id="inputCity"></input>
+  </div>
+  <div className="col-md-4">
+    <label for="inputState"  className="form-label">State</label>
+    <select id="inputState"  className="form-select">
       <option selected>Choose...</option>
       <option>Uttar Pradesh</option>
     </select>
   </div>
-  <div class="col-md-2">
-    <label for="inputZip" class="form-label">Zip</label>
-    <input type="text" class="form-control" id="inputZip"></input>
+  <div className="col-md-2">
+    <label for="inputZip" className="form-label">Zip</label>
+    <input type="text" className="form-control" id="inputZip"></input>
   </div>
-  <div class="col-12">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck"></input>
-      <label class="form-check-label" for="gridCheck">
+  <div className="col-12">
+    <div className="form-check">
+      <input className="form-check-input" type="checkbox" id="gridCheck"></input>
+      <label className="form-check-label" for="gridCheck">
         Check me out
       </label>
     </div>
   </div>
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary">Sign in</button>
+  <div className="col-12">
+    <button type="submit" className="btn btn-primary sign-in-button">Sign in</button>
   </div>
 </form>
-</div>
+</Paper>
     );
 }
  
