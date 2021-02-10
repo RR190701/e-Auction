@@ -1,5 +1,5 @@
 .raise:hover{
-  background: purple !important;
+  background: #fa255e !important;
   color: white;
 }
 .raise:focus {
@@ -12,3 +12,7 @@ hr{
   margin-left: 1rem;
   margin-right: 1rem;
 }
+.MuiAppBar-colorPrimary{
+  background-color: #fa255e !important;
+}
+/* //#fa255e  */
