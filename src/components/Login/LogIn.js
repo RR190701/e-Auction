@@ -2,6 +2,7 @@ import React ,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import Joi from "joi-browser";
 import "./style.css";
 
 
@@ -28,64 +29,70 @@ const LogIn = () => {
 
     const classes = useStyles();
 
-    const [emailAddress, setEmailAddress] = useState("");
-    const [password, setPassword] = useState("");
+    const [account, setAccount] = useState({ emailAddress:"", password: ""});
     const [errors, setErrors] = useState({});
 
-    const validate = () =>{
-    const errors = {};
+    
+  const  schema = {
+    emailAddress: Joi.string().email().required().label("Email"),
+    password: Joi.string().min(8).max(15).required().label("Password")
+  };
 
-    if(emailAddress.trim() === "")
-    errors.emailAddress = "Email required";
-    if(password.trim() === "")
-    errors.password="password required";
-
-      return Object.keys(errors).length === 0?null:errors;
-    }
-
+    
     const HandleSubmit =(e) =>{
-    e.preventDefault();
-    const errors  = validate();
-    (errors)?setErrors(errors):setErrors({});
-    if(errors)return;
+      e.preventDefault();
+      const errors  = validate();
+      (errors)?setErrors(errors):setErrors({});
+      if(errors)return;
+  
+  
+        //call server
+        console.log("login done");
+          }
+  
 
+    const validate = () =>{
+    
+    const {error} = Joi.validate(account, schema, {abortEarly:false});
+    if(!error)return null;
 
-      //call server
-      console.log("login done");
-        }
+    const errors = {};
+    for(let item of error.details)
+    errors[item.path[0]]=item.message;
+
+return errors;
+
+    }
 
     const validateProperty = ({name, value}) =>{
+  
+      const obj = {[name]: value};
+      const subSchema = {
+      [name]:schema[name]
+      }
 
-   if(name ==="emailAddress"){
-     if(value.trim()==="")return "Email required";
-   }
- 
-   if(name === "password"){
-     if(value.trim()==="")return "password required";
-   }
+      const {error} = Joi.validate(obj, subSchema)
+      return error? error.details[0].message:null;
+
+
     }    
 
-    const HandleEmail =({currentTarget:input})=>{
-      const e = {...errors};
-      const errorMessage = validateProperty(input);
-      if(errorMessage) e[input.name] = errorMessage;
-      else delete e[input.name];
+   const HandleChange = ({currentTarget:input}) =>{
+    const a = {...account};
+    a[input.name]= input.value;
+
+    const e = {...errors};
+    const errorMessage = validateProperty(input);
+    if(errorMessage) e[input.name] = errorMessage;
+    else delete e[input.name];
 
 
-      setErrors(e);
-      setEmailAddress(input.value);
-    }
-   
-    const HandlePassword = ({currentTarget:input}) =>{
-      const e = {...errors};
-      const errorMessage = validateProperty(input);
-      if(errorMessage) e[input.name] = errorMessage;
-      else delete e[input.name];
+    setErrors(e);
+    setAccount(a);
+
+   } 
 
 
-      setErrors(e);
-      setPassword(input.value);
-    }
     return ( 
 <Paper className="LoginPaper" elevation={3}>
 
@@ -93,22 +100,22 @@ const LogIn = () => {
       <form onSubmit={HandleSubmit}>
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-    <input type="text" value ={emailAddress} 
-    onChange={HandleEmail}
+    <input type="text" value ={account.emailAddress} 
+    onChange={HandleChange}
     name = "emailAddress"
      className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></input>
      {errors.emailAddress && <div className ="alert alert-danger">{errors.emailAddress}</div>}
   </div>
   <div className="mb-3">
     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-    <input type="password" value ={password} 
-    onChange={HandlePassword}
+    <input type="password" value ={account.password} 
+    onChange={HandleChange}
     name ="password"
     className="form-control" id="exampleInputPassword1"></input>
     {errors.password && <div className ="alert alert-danger">{errors.password}</div>}
   </div>
   <div className="text-center pt-4">
-  <Button type ="submit"
+  <Button type ="submit" 
       className={classes.LoginButton} >
         LOGIN
       </Button>
