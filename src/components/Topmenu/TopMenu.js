@@ -155,7 +155,7 @@ const TopMenu = () => {
   
 </div> */}
 <hr/>
-<Grid container direction="col" justify="center">
+<Grid container direction="col" justify="start">
   <Grid item xs={7}>
      {/* <Card>
             <CardContent > */}
@@ -209,6 +209,23 @@ const TopMenu = () => {
 								</CustomCarousel>
 {/* </CardContent>
 </Card> */}
+</Grid>
+<Grid item xs={5}>
+  <Card>
+    <CardHeader title={'Overview'}/>
+    <CardContent>
+      <text>Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.
+      </text>
+    </CardContent>
+
+  </Card>
+
 </Grid>
 </Grid>
 {/* <div>
