@@ -6,6 +6,11 @@ import Typography from '@material-ui/core/Typography';
 // import Carousel from 'react-bootstrap/Carousel'
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import {Link } from "react-router-dom";
+import CustomCarousel from '../common/CustomCarousel';
+import login_art3 from '../../assets/images/login3.svg';
+import login_art4 from '../../assets/images/login4.svg';
+import login_art2 from '../../assets/images/login2.svg';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Carousel} from 'react-bootstrap';
 import Grid from '@material-ui/core/Grid'; 
@@ -43,8 +48,11 @@ const TopMenu = () => {
               e-Auction
             </Typography>
             {/* <ButtonGroup size="small" aria-label="small outlined button group"> */}
-  <Button className="header">Login</Button>
+            <Link to="/log-in"> <Button className="header">Login</Button>
+            </Link>
+            <Link  to="/sign-up">
   <Button className="header">Signup</Button>
+  </Link>
 {/* </ButtonGroup> */}
           </Toolbar>
 
@@ -92,36 +100,36 @@ const TopMenu = () => {
 </CardContent>
 </Card>
         </div> */}
-
+<hr/>
        <div>
-         <Card>
+         <Card style={{border: '1px solid  #fa255e'}}>
 
          <Grid style={{  fontFamily: 'sans-serif'}}   justify="center" direction="row" container>
           <Button variant="outline-default" className="raise" startIcon={<GiCrucifix />}>
             
             Active Auctions
           </Button>
-          <hr/>
+          <hr style={{marginRight: '2rem'}}/>
           <Button className="raise" startIcon={ <BsArrowLeftRight/>}>
            
             Correngidum
           </Button>
-          <hr/>
+          <hr style={{marginRight: '2rem'}}/>
           <Button  className="raise"  startIcon={<AiOutlineFileDone/> }>
             
             Result of Auctions
           </Button>
-          <hr/>
+          <hr style={{marginRight: '2rem'}}/>
           <Button  className="raise" startIcon={<BiRupee/> }>
             
             Auctions By Value
           </Button>
-          <hr/>
+          <hr style={{marginRight: '2rem'}}/>
           <Button  className="raise" startIcon={<BiRupee/> }>
             
             Auctions By Org
           </Button>
-          <hr/>
+          <hr style={{marginRight: '1rem'}}/>
           <Button  className="raise" startIcon={<BiRupee/> }>
             
             Auctions By Prod Category
@@ -149,48 +157,81 @@ const TopMenu = () => {
   </Card>
   
 </div> */}
-     <Card>
-            <CardContent>
-        <Carousel>
+<hr/>
+<Grid container direction="col" justify="start">
+  <Grid item xs={7}>
+     {/* <Card>
+            <CardContent > */}
+        {/* <Carousel>
   <Carousel.Item>
     <img
       className="d-block w-100"
       src="https://eauction.gov.in/eauction/static/img/banner_4.d7db3ba.jpg"
       alt="First slide"
-    />
+    /> */}
     {/* <Carousel.Caption>
       <h3>First slide label</h3>
       <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
     </Carousel.Caption> */}
-  </Carousel.Item>
+  {/* </Carousel.Item>
   <Carousel.Item>
     <img
       className="d-block w-100"
       src="https://eauction.gov.in/eauction/static/img/banner_5.6b7528b.jpg"
       alt="Third slide"
-    />
+    /> */}
 
     {/* <Carousel.Caption>
       <h3>Second slide label</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </Carousel.Caption> */}
-  </Carousel.Item>
+  {/* </Carousel.Item>
   <Carousel.Item>
     <img
      
       src="https://eauction.gov.in/eauction/static/img/banner_3.ab056ab.jpg"
       
-    />
+    /> */}
 {/* 
     <Carousel.Caption>
       <h3>Third slide label</h3>
       <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
     </Carousel.Caption> */}
-  </Carousel.Item>
-</Carousel>
-</CardContent>
-</Card>
-<div>
+  {/* </Carousel.Item>
+</Carousel> */}
+	<CustomCarousel navButtonsAlwaysVisible={false} autoPlay={true}>
+									<div>
+										<img src={login_art2} alt="login art 2" width="60%" />
+									</div>
+									<div>
+										<img src={login_art3} alt="login art 3" width="60%" />
+									</div>
+									<div>
+										<img src={login_art4} alt="login art 4" width="60%" />
+									</div>
+								</CustomCarousel>
+{/* </CardContent>
+</Card> */}
+</Grid>
+<Grid item xs={5}>
+  <Card>
+    <CardHeader title={'Overview'}/>
+    <CardContent>
+      <text>Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.
+      Type keywords relative to your project to find the illustrations you need.
+      </text>
+    </CardContent>
+
+  </Card>
+
+</Grid>
+</Grid>
+{/* <div>
 <Card style={{ padding: '0.4rem'}}>
 <Grid container direction="row">
   <Card  style={{ padding: '0.4rem', paddingRight: '0rem', alignItems: 'center', marginRight: '5rem', width: '15rem', height: '3rem'}}>
@@ -231,7 +272,7 @@ const TopMenu = () => {
   </Card>
   </Grid>
   </Card>
-</div>
+</div> */}
 
          
 
