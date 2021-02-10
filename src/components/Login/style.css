@@ -1,0 +1,15 @@
+.LoginPaper {
+    width: 32%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 0 3rem 3rem;
+    margin: 3rem auto;
+   }
+   @media(max-width:445px){
+
+    .LoginPaper {
+      width: 95%;
+      padding: 2rem 1rem;
+    }
+  }
+  

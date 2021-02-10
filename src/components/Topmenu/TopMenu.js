@@ -9,8 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Carousel} from 'react-bootstrap';
 import Grid from '@material-ui/core/Grid'; 
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { Card, CardHeader, CardContent } from '@material-ui/core';
+import { Card, CardContent } from '@material-ui/core';
 import {GiCrucifix} from 'react-icons/gi'
 import {ImHammer} from 'react-icons/im'
 import {BsArrowLeftRight} from 'react-icons/bs'
