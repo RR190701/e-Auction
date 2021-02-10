@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 // import Carousel from 'react-bootstrap/Carousel'
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import {Link } from "react-router-dom";
 import CustomCarousel from '../common/CustomCarousel';
 import login_art3 from '../../assets/images/login3.svg';
 import login_art4 from '../../assets/images/login4.svg';
@@ -48,8 +49,11 @@ const TopMenu = () => {
               e-Auction
             </Typography>
             {/* <ButtonGroup size="small" aria-label="small outlined button group"> */}
-  <Button className="header">Login</Button>
+            <Link to="/log-in"> <Button className="header">Login</Button>
+            </Link>
+            <Link  to="/sign-up">
   <Button className="header">Signup</Button>
+  </Link>
 {/* </ButtonGroup> */}
           </Toolbar>
 
