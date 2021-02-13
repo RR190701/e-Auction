@@ -4,6 +4,7 @@ import TopMenu from './components/Topmenu/TopMenu';
 import Profile from './containers/Profile';
 import SignUp from './components/SignIn/SignUp';
 import LogIn from './components/Login/LogIn';
+import UpcomingAuctions from "./components/UpcomingAuctions";
 
 const App = () => {
 
@@ -14,6 +15,7 @@ const App = () => {
        <Route path ='/log-in' exact component ={LogIn}></Route>
        <Route path ='/Profile' component = {Profile}></Route>
        <Route path ='/sign-up'component ={SignUp}></Route>
+       <Route path ='/Upcoming'component ={UpcomingAuctions}></Route>
      </Router>
    </React.Fragment>
  );

@@ -14,10 +14,17 @@ import login_art2 from '../../assets/images/login2.svg';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Carousel} from 'react-bootstrap';
 import Grid from '@material-ui/core/Grid'; 
-import { Card, CardContent } from '@material-ui/core';
+import {
+	
+	Card,
+	CardHeader,
+	CardContent,
+	Divider,
+	
+} from '@material-ui/core';
 import {GiCrucifix} from 'react-icons/gi'
 import {ImHammer} from 'react-icons/im'
-import CardHeader from '@material-ui/core/CardHeader';
+
 import {BsArrowLeftRight} from 'react-icons/bs'
 import {BiRupee} from 'react-icons/bi'
 import {AiOutlineFileDone} from 'react-icons/ai'
@@ -103,30 +110,38 @@ const TopMenu = () => {
         </div> */}
 <hr/>
        <div>
-         <Card style={{border: '1px solid  #fa255e'}}>
+         <Grid direction="row" container >
 
-         <Grid style={{  fontFamily: 'sans-serif'}}   justify="center" direction="row" container>
-          <Button variant="outline-default" className="raise" startIcon={<GiCrucifix />}>
+         <Grid item xs={4}>
+          <Button style={{marginLeft: "4rem"}} variant="outline-default" className="raise" startIcon={<GiCrucifix />}>
             
             Active Auctions
           </Button>
-          <hr style={{marginRight: '2rem'}}/>
-          <Button className="raise" startIcon={ <BsArrowLeftRight/>}>
+        </Grid>
+          {/* <Button className="raise" startIcon={ <BsArrowLeftRight/>}>
            
             Correngidum
           </Button>
-          <hr style={{marginRight: '2rem'}}/>
-          <Button  className="raise"  startIcon={<AiOutlineFileDone/> }>
+          <hr style={{marginRight: '2rem'}}/> */}
+           <Grid  item xs={4}>
+          <Button style={{marginLeft: "7rem"}}  className="raise"  startIcon={<AiOutlineFileDone/> }>
             
             Result of Auctions
           </Button>
-          <hr style={{marginRight: '2rem'}}/>
-          <Button  className="raise" startIcon={<BiRupee/> }>
+          </Grid>
+        
+          <Grid item xs={4}>
+          <Button style={{marginLeft: "13rem"}} variant="outline-default" className="raise" startIcon={<GiCrucifix />}>
+            
+            Host an Auction
+          </Button>
+        </Grid>
+          {/* <Button  className="raise" startIcon={<BiRupee/> }>
             
             Auctions By Value
           </Button>
-          <hr style={{marginRight: '2rem'}}/>
-          <Button  className="raise" startIcon={<BiRupee/> }>
+          <hr style={{marginRight: '2rem'}}/> */}
+          {/* <Button  className="raise" startIcon={<BiRupee/> }>
             
             Auctions By Org
           </Button>
@@ -134,9 +149,9 @@ const TopMenu = () => {
           <Button  className="raise" startIcon={<BiRupee/> }>
             
             Auctions By Prod Category
-          </Button>
+          </Button> */}
+         
          </Grid>
-         </Card>
          </div>
          {/* <hr/> */}
         {/* <div>
@@ -160,7 +175,8 @@ const TopMenu = () => {
 </div> */}
 <hr/>
 <Grid container direction="col" justify="start">
-  <Grid item xs={7}>
+ <Grid item xs={1}></Grid>
+  <Grid item xs={6}>
      {/* <Card>
             <CardContent > */}
         {/* <Carousel>
@@ -205,7 +221,7 @@ const TopMenu = () => {
 										<img src={login_art2} alt="login art 2" width="60%" />
 									</div>
 									<div>
-										<img src={login_art3} alt="login art 3" width="60%" />
+										<img src={login_art3} alt="login art 3" width="75%" />
 									</div>
 									<div>
 										<img src={login_art4} alt="login art 4" width="60%" />
@@ -216,9 +232,9 @@ const TopMenu = () => {
 </Grid>
 <Grid item xs={5}>
   <Card>
-    <CardHeader title={'Overview'}/>
+    <CardHeader title={<h4 style={{color: '#fa255e', fontFamily: 'popins'}}>Overview</h4>}/>
     <CardContent>
-      <text>Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
+      <text style={{fontFamily: 'popins'}}>Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
       Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
       Type keywords relative to your project to find the illustrations you need.Type keywords relative to your project to find the illustrations you need.
       Type keywords relative to your project to find the illustrations you need.
@@ -274,8 +290,6 @@ const TopMenu = () => {
   </Grid>
   </Card>
 </div> */}
-
-         
 
          
        
