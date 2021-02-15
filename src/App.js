@@ -12,8 +12,8 @@ const App = () => {
      <Router>
        <Route path ='/' exact component = {TopMenu}></Route>
        <Route path ='/log-in' exact component ={LogIn}></Route>
-       <Route path ='/Profile' component = {Profile}></Route>
        <Route path ='/sign-up'component ={SignUp}></Route>
+       <Route path = '/Profile/:ProfileID'component = {Profile}></Route>
      </Router>
    </React.Fragment>
  );

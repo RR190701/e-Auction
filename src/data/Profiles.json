@@ -1,0 +1,42 @@
+{
+    "data" : [
+        {
+            "ProfileID": 1,
+            "firstName" : "Rashika",
+            "lastName" : "Rawat",
+            "email" : "rashikarawat01@gmail.com",
+            "phone": "814655308",
+            "age": "19",
+            "country": "India",
+            "Address" : "548/549V Vikram Nagr Manak Nagar lucknow",
+            "zip":"220618",
+            "state":"Uttar Pradesh"
+        },
+        {
+            "ProfileID": 2,
+            "firstName" : "Vaishali",
+            "lastName" : "Rawat",
+            "email" : "vashalirawat01@gmail.com",
+            "phone": "814655308",
+            "age": "19",
+            "country": "India",
+            "Address" : "548/549V Vikram Nagr Manak Nagar lucknow",
+            "zip":"220618",
+            "state":"Uttar Pradesh"
+
+        },
+        {
+            "ProfileID": 3,
+            "firstName" : "Yash",
+            "lastName" : "Rawat",
+            "email" : "rashikarawat01@gmail.com",
+            "phone": "814655308",
+            "age": "19",
+            "country": "India",
+            "Address" : "548/549V Vikram Nagr Manak Nagar lucknow",
+            "zip":"220618",
+            "state":"Uttar Pradesh"
+
+        }
+    ]
+}
