@@ -1,0 +1,92 @@
+.dashboard {
+    background-color:#f8f8f8;
+    border-top: #f8f8f8 solid 8px;
+    width: 100%;
+}
+.dasboard-heading{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 25px;
+    border-bottom: #888 solid 1px;
+    
+    margin-bottom: 1rem;
+}
+.personal-info{
+    background-color: white;
+    margin-bottom: 0.5rem;
+    box-sizing: border-box;
+    padding: 2rem;
+}
+.contact{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+.phone,.email {
+    
+    background-color: white;
+    width: 49.5%;
+    border: #fa255e solid 2px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 2rem;
+    color: black;
+    font-weight: bold;
+}
+.Address{
+    background-color: white;
+    box-sizing: border-box;
+    padding: 2rem;
+    
+}
+.address-enitity,.personal-info-enitity{
+    display: flex;
+    margin: .5rem;
+}
+.address-enitity>div,.personal-info-enitity>div{
+   font-family: monospace;
+   font-size: 18px;
+   text-transform: capitalize;
+   color: rgb(77, 76, 76);
+}
+.wedge{
+    color: black!important;
+    width: 30%;
+}
+.slant {
+    width: 70%;
+}
+
+@media(max-width:685px){
+
+    .contact{
+        display: unset;
+        margin-bottom: 0.5rem;
+    }
+
+    .phone,.email {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+}
+
+@media(max-width:485px){
+    .wedge{
+     font-size: 14px!important;
+     width: 40%;
+    }
+    .slant {
+        font-size: 14px!important;
+        width: 60%;
+    }
+    .phone,.email {
+        padding: 0.5rem;
+        font-size: 15px;
+    }
+    .dasboard-heading{
+   font-size: 19px!important;
+    }
+}

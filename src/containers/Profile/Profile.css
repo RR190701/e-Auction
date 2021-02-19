@@ -1,0 +1,35 @@
+.Profile-div{
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+}
+.side-bar {
+    width: 27%;
+    position: fixed;
+}
+
+.profile-bar {
+    width: 73%;
+    padding: 1.5rem;
+    margin-left: auto;
+}
+
+@media(max-width:835px){
+    .side-bar {
+        width: 100%;
+        position: unset;
+    }
+
+    .profile-bar {
+        width: 100%;
+        padding: 1.5rem;
+        margin-left: 0;
+    }
+}
+
+@media(max-width:485px){
+.profile-bar-navbar-items{
+    font-size: 12px!important;
+    padding: 6px;
+}
+}

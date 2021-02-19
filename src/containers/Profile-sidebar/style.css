@@ -1,0 +1,58 @@
+.Profile-side-bar {
+    width: 100%;
+    box-sizing: border-box;
+    height: 100vh;
+    background-color: #fa255e;
+    text-align: center;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+}
+.profile-pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+.Profile-name{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 25px;
+    padding-top: 15px;
+    margin-bottom: 0;
+}
+.Profile-profession{
+    font-family: monospace;
+    
+}
+
+@media(max-width: 1075px){
+
+    .profile-pic {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media(max-width:835px){
+
+    .Profile-side-bar {
+        width: 100%;
+        height: unset;
+        padding-top: 3rem;
+        
+    }
+
+    .profile-pic {
+        width: 250px;
+        height: 250px;
+    }
+}
+@media(max-width:425px){
+
+    .Profile-side-bar {
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    .profile-pic {
+        width: 200px;
+        height: 200px;
+    }
+}
