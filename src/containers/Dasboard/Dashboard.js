@@ -1,6 +1,9 @@
 import React from 'react';
-import { IconContext } from "react-icons";
+import { AiOutlineMail } from "react-icons/ai";
 import "./style.css";
+import { FiPhoneIncoming } from "react-icons/fi";
+
+
 
 const Dashboard = () => {
     return (  
@@ -22,10 +25,13 @@ const Dashboard = () => {
    </div>
    <div className ="contact">
 <div className="phone">
-    8146515308
+    <span><FiPhoneIncoming variant="primary"/></span>
+   <span style={{marginLeft: "1rem"}}>8146515308</span> 
+    
 </div>
 <div className="email">
-    rashikarawat01@gmail.com
+    <span>< AiOutlineMail/></span>
+    <span style={{marginLeft: "1rem"}}>  rashikarawat01@gmail.com</span>
 </div>
    </div>
    <div className="Address">
