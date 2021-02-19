@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineMail } from "react-icons/ai";
 import "./style.css";
-import { FiPhoneIncoming } from "react-icons/fi";
+import { AiTwotonePhone } from "react-icons/ai";
 
 
 
@@ -25,6 +25,7 @@ const Dashboard = () => {
    </div>
    <div className ="contact">
 <div className="phone">
+<<<<<<< HEAD
     <span><FiPhoneIncoming variant="primary"/></span>
    <span style={{marginLeft: "0.5rem"}}>8146515308</span> 
     
@@ -32,6 +33,15 @@ const Dashboard = () => {
 <div className="email">
     <span>< AiOutlineMail/></span>
     <span style={{marginLeft: "0.3rem"}}>  rashikarawat01@gmail.com</span>
+=======
+    <span><AiTwotonePhone fontSize="1.5rem" fill="#fa255e"/></span>
+   <span style={{marginLeft: "1rem"}}>8146515308</span> 
+    
+</div>
+<div className="email">
+    <span>< AiOutlineMail fill="#fa255e" fontSize="1.5rem"/></span>
+    <span style={{marginLeft: "1rem"}}>  rashikarawat01@gmail.com</span>
+>>>>>>> 00a03ef1f7ec4c724d6253b567ba6b1dae449d8b
 </div>
    </div>
    <div className="Address">
