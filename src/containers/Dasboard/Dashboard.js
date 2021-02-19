@@ -26,12 +26,12 @@ const Dashboard = () => {
    <div className ="contact">
 <div className="phone">
     <span><FiPhoneIncoming variant="primary"/></span>
-   <span style={{marginLeft: "1rem"}}>8146515308</span> 
+   <span style={{marginLeft: "0.5rem"}}>8146515308</span> 
     
 </div>
 <div className="email">
     <span>< AiOutlineMail/></span>
-    <span style={{marginLeft: "1rem"}}>  rashikarawat01@gmail.com</span>
+    <span style={{marginLeft: "0.3rem"}}>  rashikarawat01@gmail.com</span>
 </div>
    </div>
    <div className="Address">
