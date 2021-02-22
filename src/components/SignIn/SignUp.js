@@ -25,11 +25,11 @@ const SignUp = () => {
     Address: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
-    .required("Lastname is required"),
+    .required("Address is required"),
     City: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
-    .required("Lastname is required"),
+    .required("City is required"),
   
   Number: Yup.string()
   //   .required("Phone number is required")
@@ -39,7 +39,7 @@ const SignUp = () => {
   //   ),
   .min(2, "Too Short!")
   .max(50, "Too Long!")
-  .required("Lastname is required"),
+  .required("Number is required"),
     email: Yup.string()
     .email("Must be an email address")
     .max(255, "Too Long!")
