@@ -8,77 +8,108 @@ import Error from './Error'
 
 const SignUp = () => {
   const ValidationSchema = Yup.object().shape({
-    FirstName: Yup.string()
+    Name: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
-    .required("Firstname is required"),
+    .required("Name is required"),
+    Zip: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Zip is required"),
   
-  
-    LastName: Yup.string()
+    UserName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Username is required"),
+    
+    Address: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Lastname is required"),
+    City: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Lastname is required"),
   
   Number: Yup.string()
-    .required("Phone number is required")
-    .matches(
-  /^([0]{1}|\+?[234]{3})([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$/g,
-      "Invalid phone number"
-    ),
+  //   .required("Phone number is required")
+  //   .matches(
+  // /^([0]{1}|\+?[234]{3})([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$/g,
+  //     "Invalid phone number"
+  //   ),
+  .min(2, "Too Short!")
+  .max(50, "Too Long!")
+  .required("Lastname is required"),
+    email: Yup.string()
+    .email("Must be an email address")
+    .max(255, "Too Long!")
+    .required("Required")
+});
   
-  email: Yup.string().email().required("Email is required"),
-  })
 
-  const HandleSubmit = (e) =>{
-    e.preventDefault();
+  // const HandleSubmit = (e) =>{
+  //   e.preventDefault();
 
-    //call the server
-    console.log("submitted");
-  }
+  //   //call the server
+  //   console.log("submitted");
+  // }
 
     return ( 
-      <Formik initialValues={{ FirstName: '', LastName: '', Address: '', City: '', email: ''}}
+      <Formik initialValues={{ Name: '', UserName: '', Address: '', City: '', email: '', Number: '', Zip: ''}}
       validationSchema={ValidationSchema}
+      onSubmit={(values, { setSubmitting, resetForm }) => {
+        setSubmitting(true);
+
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          resetForm();
+         
+          setSubmitting(false);
+        }, 500);
+      }}
       >
-        {({ values, errors, touched, handleChange, handleBlur}) => (
+        {({ values, errors, touched, handleChange, handleBlur, handleSubmit,  isSubmitting,
+        setFieldValue}) => (
         <Paper className="sign-in-form" elevation={3}>
    
           <h1 className="text-center pb-5 sign-in-heading">SIGN IN</h1>
-  <form onSubmit={HandleSubmit} className="row g-3">
+  <form onSubmit={handleSubmit} className="row g-3">
   <div className="col-md-6">
-    <label htmlFor="inputFirstName" className="form-label">First Name</label>
-    <input type="text" name="FirstName" onChange={handleChange}  id="FirstName" 
-								 value={values.FirstName}   className="form-control" />
-                   <Error touched={touched.FirstName} message={errors.FirstName} />
+    <label htmlFor="Name" className="form-label">Name</label>
+    <input type="text" name="Name" onChange={handleChange}  id="Name" onBlur={handleBlur}
+								 value={values.Name}    className="form-control"  />
+                   <Error touched={touched.Name} message={errors.Name} />
   </div>
   <div className="col-md-6">
-    <label htmlFor="inputLastName" className="form-label">Last Name</label>
-    <input type="text" name="LastName" id="LastName"  onChange={handleChange} value={values.LastName} 	
+    <label htmlFor="UserName" className="form-label">User Name</label>
+    <input type="text" name="UserName" id="UserName"  onChange={handleChange}  onBlur={handleBlur} value={values.UserName} 	
 							  className="form-control" />
-                 <Error touched={touched.LastName} message={errors.LastName} />
+                 <Error touched={touched.UserName} message={errors.UserName} />
   </div>
   <div className="col-md-6">
-    <label htmlFor="Contact" className="form-label">Contact Number</label>
-    <input type="number" name="number" id="Number"   onChange={handleChange}  className="form-control" id="Contact"  	
-/>
+    <label htmlFor="Number" className="form-label">Contact Number</label>
+    <input type="text" name="Number" id="Number"   onChange={handleChange} onBlur={handleBlur} className="form-control"  	
+/> <Error touched={touched.Number} message={errors.Number} />
   </div>
   <div className="col-md-6">
-    <label htmlFor="inputEmail4" className="form-label">Email ID</label>
-    <input type="email" name="email" id="email"  onChange={handleChange} value={values.email} className="form-control" 	
-							 id="inputEmail4"/> <Error touched={touched.email} message={errors.email} />
+    <label htmlFor="email" className="form-label">Email ID</label>
+    <input type="text" name="email" id="email"  onChange={handleChange} value={values.email}  onBlur={handleBlur}  className="form-control"	
+							 /> <Error touched={touched.email} message={errors.email} />
   </div>
   <div className="col-md-9">
-    <label htmlFor="inputAddress" className="form-label">Full Address</label>
-    <input type="text" className="form-control"  onChange={handleChange} value={values.Address} id="Address" 
-							 placeholder="1234 Main St"></input>
+    <label htmlFor="Address" className="form-label">Full Address</label>
+    <input type="text" className="form-control"  onChange={handleChange} onBlur={handleBlur} value={values.Address} id="Address" 
+							 placeholder="1234 Main St"/>
+                <Error touched={touched.Address} message={errors.Address} />
   </div>
   <div className="col-md-3">
     <label htmlFor="inputAge" className="form-label">Age</label>
-    <input type="text" className="form-control"  onChange={handleChange} id="inputAge"></input>
+    <input type="number" className="form-control"  onChange={handleChange}  onBlur={handleBlur} id="inputAge"></input>
   </div>
   <div className="col-md-6">
-    <label htmlFor="inputCity" className="form-label">City</label>
-    <input type="text" className="form-control"  onChange={handleChange} id="City" value={values.City}></input>
+    <label htmlFor="City" className="form-label">City</label>
+    <input type="text" className="form-control"  onChange={handleChange}  onBlur={handleBlur} id="City" value={values.City}/>
+    <Error touched={touched.City} message={errors.City} />
   </div>
   <div className="col-md-4">
     <label htmlFor="inputState"  className="form-label">State</label>
@@ -88,8 +119,9 @@ const SignUp = () => {
     </select>
   </div>
   <div className="col-md-2">
-    <label htmlfor="inputZip" className="form-label">Zip</label>
-    <input type="text" className="form-control" id="inputZip"></input>
+    <label htmlfor="Zip" className="form-label">Zip</label>
+    <input type="text" className="form-control" id="Zip"   onChange={handleChange}  onBlur={handleBlur}  value={values.Zip}/>
+    <Error touched={touched.Zip} message={errors.Zip}/>
   </div>
   <div className="col-12">
     <div className="form-check">
@@ -100,7 +132,7 @@ const SignUp = () => {
     </div>
   </div>
   <div className="col-12">
-    <button type="submit" className="btn btn-primary sign-in-button">Sign in</button>
+    <button type="submit" className="btn btn-primary sign-in-button"  disabled={isSubmitting}>Sign in</button>
   </div>
 </form>
 </Paper>
