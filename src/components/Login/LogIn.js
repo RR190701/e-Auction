@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
             width:'17rem',
             padding: '0 30px ',
             // marginTop:'2rem',
-            // marginBottom:'2rem',
+            // marginBottom:'2rem', 
       }
     
   }));
@@ -29,12 +29,12 @@ const LogIn = () => {
 
     const classes = useStyles();
 
-    const [account, setAccount] = useState({ emailAddress:"", password: ""});
+    const [account, setAccount] = useState({ emailAddress :"", password: ""});
     const [errors, setErrors] = useState({});
 
     
   const  schema = {
-    emailAddress: Joi.string().email().required().label("Email"),
+    emailAddress: Joi.string().required().label("User Name"),
     password: Joi.string().min(8).max(15).required().label("Password")
   };
 
@@ -99,7 +99,7 @@ return errors;
 <h1 className="text-center pb-4 pt-5">LOG IN</h1>
       <form onSubmit={HandleSubmit}>
   <div className="mb-3">
-    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+    <label htmlFor="exampleInputEmail1" className="form-label">Username</label>
     <input type="text" value ={account.emailAddress} 
     onChange={HandleChange}
     name = "emailAddress"
