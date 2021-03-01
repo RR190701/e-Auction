@@ -25,3 +25,6 @@ hr{
 .Carousel-buttonWrapper-8{
   color: #fa255e !important;
 }
+.MuiTabs-centered{
+  justify-content: start !important;
+}
