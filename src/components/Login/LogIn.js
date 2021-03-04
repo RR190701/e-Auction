@@ -34,8 +34,8 @@ const LogIn = () => {
 
     
   const  schema = {
-    emailAddress: Joi.string().required().label("User Name"),
-    password: Joi.string().min(8).max(15).required().label("Password")
+    emailAddress: Joi.string().email().required().label("User Name"),
+    password: Joi.string().required().label("Password")
   };
 
     
