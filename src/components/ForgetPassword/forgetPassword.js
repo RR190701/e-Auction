@@ -8,7 +8,7 @@ import "./style.css";
 
 const useStyles = makeStyles((theme) => ({
 
-      LoginButton: {
+      ForgetPasswordButton: {
         
             background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
             border: 0,
@@ -25,17 +25,16 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-const LogIn = () => {
+const ForgetPassword = () => {
 
     const classes = useStyles();
 
-    const [account, setAccount] = useState({ email :"", password: ""});
+    const [account, setAccount] = useState({ email:""});
     const [errors, setErrors] = useState({});
 
     
   const  schema = {
-    email: Joi.string().email().required().label("Email Address"),
-    password: Joi.string().required().label("Password")
+    email: Joi.string().email().required().label("Email Address")
   };
 
     
@@ -44,28 +43,16 @@ const LogIn = () => {
       const errors  = validate();
       (errors)?setErrors(errors):setErrors({});
       if(errors)return;
-
-      const a = {...account};
-       Object.keys(a).map((key) => {
-             a[key] = a[key].trim();
-       })
-
-       setAccount(a);
+  
   
         //call server
-
-        setTimeout(() => {
-          alert(JSON.stringify(a, null, 2));
-        
-        }, 500);
-
-
+  alert(JSON.stringify(account))
           }
   
 
     const validate = () =>{
     
-    const {error} = Joi.validate(account, schema, {abortEarly:false});
+    const {error} = Joi.validate(account, schema, {abortEarly:false}); //will return errors after checkig for all the fields
     if(!error)return null;
 
     const errors = {};
@@ -106,30 +93,23 @@ return errors;
 
 
     return ( 
-<Paper className="LoginPaper" elevation={3}>
+<Paper className="ForgetPasswordPaper" elevation={3}>
 
-<h1 className="text-center pb-4 pt-5">LOG IN</h1>
+<h2 className="text-center pb-4 pt-5">FORGET PASSWORD</h2>
       <form onSubmit={HandleSubmit}>
   <div className="mb-3">
-    <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
+    <label htmlFor="exampleInputEmail1" className="form-label">Enter your registered email</label>
     <input type="text" value ={account.email} 
     onChange={HandleChange}
     name = "email"
      className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></input>
      {errors.email && <div className ="alert alert-danger">{errors.email}</div>}
   </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-    <input type="password" value ={account.password} 
-    onChange={HandleChange}
-    name ="password"
-    className="form-control" id="exampleInputPassword1"></input>
-    {errors.password && <div className ="alert alert-danger">{errors.password}</div>}
-  </div>
+
   <div className="text-center pt-4">
   <Button type ="submit" 
-      className={classes.LoginButton} >
-        LOGIN
+      className={classes.ForgetPasswordButton} >
+        SEND EMAIL
       </Button>
   </div>
  
@@ -139,4 +119,4 @@ return errors;
      );
 }
  
-export default LogIn;
+export default ForgetPassword;

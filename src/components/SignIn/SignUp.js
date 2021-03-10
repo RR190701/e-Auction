@@ -87,6 +87,16 @@ const SignUp = () => {
   const HandleSubmit = (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
 
+
+    Object.keys(values).map((key) => {
+      values[key] = values[key].trim();
+})
+
+
+  //removing confirmPassword
+  delete values.confirmPassword;
+
+
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
       resetForm();
@@ -158,6 +168,7 @@ const SignUp = () => {
                 id="profession"
                 onChange={handleChange}
                 onBlur={handleBlur}
+                value={values.profession}
                 className="form-control"
               />
               <Error touched={touched.profession} message={errors.profession} />
@@ -174,6 +185,7 @@ const SignUp = () => {
                 id="number"
                 onChange={handleChange}
                 onBlur={handleBlur}
+                value={values.number}
                 className="form-control"
               />
               <Error touched={touched.number} message={errors.number} />
@@ -224,7 +236,7 @@ const SignUp = () => {
                 id="confirmPassword"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                // value={values.password}
+                 value={values.confirmPassword}
                 className="form-control"
               />
               <Error touched={touched.confirmPassword} message={errors.confirmPassword} />
@@ -259,7 +271,7 @@ const SignUp = () => {
                 name = "age"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.Age}
+                value={values.age}
                 id="age"
               ></input>
               <Error touched={touched.age} message={errors.age} />
