@@ -1,0 +1,7 @@
+.upcoming-auction-container {
+    width: 100%;
+    margin-top: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

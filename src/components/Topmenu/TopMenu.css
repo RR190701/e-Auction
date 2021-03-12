@@ -28,3 +28,16 @@ hr{
 .MuiTabs-centered{
   justify-content: start !important;
 }
+
+.service {
+  background-color: #ffe4e1;
+  border-top:#ff033e 3px solid ;
+  padding-top: 1rem;
+}
+.service-container {
+  width:95%;
+  margin: auto;
+}
+.service-navbar {
+  background-color:white;
+}
