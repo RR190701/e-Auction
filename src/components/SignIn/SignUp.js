@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useState, useEffect  } from "react";
 import Paper from "@material-ui/core/Paper";
 import "./style.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Error from "./Error";
+import axios from 'axios';
+import {Link} from 'react-router-dom'
 
-const SignUp = () => {
+const SignUp = ({history}) => {
+const [error, setError] = useState("");
+const [email, setEmail] = useState("");
+const [username, setusername] = useState("");
+const [password, setpassword] = useState("");
+  
 
-  const emailTakens = [
+useEffect(() => {
+  if(localStorage.getItem("authToken")){
+    history.push("/");
+  }
+}, [history])
+const emailTakens = [
     "test@gmail.com",
     "rashikarawat01@gmail.com"
   ]
 
   //validation schema
   const ValidationSchema = Yup.object().shape({
-    fullname: Yup.string()
+    username: Yup.string()
     .trim()
       .min(5, "*Too Short!")
       .max(50, "*Too Long!")
@@ -84,35 +96,43 @@ const SignUp = () => {
   });
 
   //on handle
-  const HandleSubmit = (values, { setSubmitting, resetForm }) => {
-    setSubmitting(true);
+  const HandleSubmit = async (e) => {
+    e.preventDefault();
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+try {
+  const {data} = await axios.post("/api/auth/register", {username, email, password},config);
+localStorage.setItem("authToken", data.token);
+history.pushState('/');
+} catch (error)
+{
+  setError(error.response.data.error)
+  setTimeout(() => {
+    setError("");
+  }, 5000);
+  }
+}
+    
 
-
-    Object.keys(values).map((key) => {
-      values[key] = values[key].trim();
-})
 
 
   //removing confirmPassword
-  delete values.confirmPassword;
 
 
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      resetForm();
 
-      setSubmitting(false);
-    }, 500);
-  }
+  
 
   return (
     <Formik
       initialValues={{
-        fullname: "",
+        // fullname: "",
         profession:"",
         number: "",
-        email: "",
-        password: "",
+        // email: "",
+        // password: "",
         confirmPassword: "",
         about:"",
         age: "",
@@ -139,19 +159,19 @@ const SignUp = () => {
         <Paper className="sign-in-form" elevation={3}>
           {/* sign heading */}
           <h1 className="text-center pb-5 sign-in-heading">SIGN IN</h1>
-          <form onSubmit={handleSubmit} className="row g-3">
+          <form onSubmit={HandleSubmit} className="row g-3">
             {/* full name */}
             <div className="col-md-6">
               <label htmlFor="fullname" className="form-label">
-                Full Name
+                User Name
               </label>
               <input
                 type="text"
-                name="fullname"
-                onChange={handleChange}
-                id="fullname"
+                name="username"
+                onChange={(e)=> setusername(e.target.value)}
+                id="username"
                 onBlur={handleBlur}
-                value={values.fullname}
+                value={username}
                 className="form-control"
               />
               <Error touched={touched.fullname} message={errors.fullname} />
@@ -200,8 +220,8 @@ const SignUp = () => {
                 type="text"
                 name="email"
                 id="email"
-                onChange={handleChange}
-                value={values.email}
+                onChange={(e)=> setEmail(e.target.value)}
+                value={email}
                 onBlur={handleBlur}
                 className="form-control"
               />
@@ -217,9 +237,9 @@ const SignUp = () => {
                 type="password"
                 name="password"
                 id="password"
-                onChange={handleChange}
+                onChange={(e)=> setpassword(e.target.value)}
                 onBlur={handleBlur}
-                value={values.password}
+                value={password}
                 className="form-control"
               />
               <Error touched={touched.password} message={errors.password} />

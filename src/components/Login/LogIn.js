@@ -1,10 +1,11 @@
-import React ,{useState} from 'react';
+import React ,{useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Joi from "joi-browser";
 import "./style.css";
-
+import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -25,109 +26,121 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-const LogIn = () => {
+const LogIn = ({history}) => {
 
     const classes = useStyles();
 
-    const [account, setAccount] = useState({ email :"", password: ""});
-    const [errors, setErrors] = useState({});
+    // const [account, setAccount] = useState({ email :"", password: ""});
+    const [errors, setErrors] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setpassword] = useState("");
 
-    
-  const  schema = {
-    email: Joi.string().email().required().label("Email Address"),
-    password: Joi.string().required().label("Password")
-  };
-
-    
-    const HandleSubmit =(e) =>{
-      e.preventDefault();
-      const errors  = validate();
-      (errors)?setErrors(errors):setErrors({});
-      if(errors)return;
-
-      const a = {...account};
-       Object.keys(a).map((key) => {
-             a[key] = a[key].trim();
-       })
-
-       setAccount(a);
-  
-        //call server
-
-        setTimeout(() => {
-          alert(JSON.stringify(a, null, 2));
-        
-        }, 500);
-
-
-          }
-  
-
-    const validate = () =>{
-    
-    const {error} = Joi.validate(account, schema, {abortEarly:false});
-    if(!error)return null;
-
-    const errors = {};
-    for(let item of error.details)
-    errors[item.path[0]]=item.message;
-
-return errors;
-
-    }
-
-    const validateProperty = ({name, value}) =>{
-  
-      const obj = {[name]: value};
-      const subSchema = {
-      [name]:schema[name]
+    useEffect(() => {
+      if(localStorage.getItem("authToken")){
+        history.push("/");
       }
+    }, [history])
+  // const  schema = {
+  //   email: Joi.string().email().required().label("Email Address"),
+  //   password: Joi.string().required().label("Password")
+  // };
 
-      const {error} = Joi.validate(obj, subSchema)
-      return error? error.details[0].message:null;
+    
+  const LoginSubmit = async (e) => {
+    e.preventDefault();
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+try {
+  const {data} = await axios.post("/api/auth/login", { email, password},config);
+localStorage.setItem("authToken", data.token);
+history.pushState('/');
+} catch (error)
+{
+  setErrors(error.response.data.error)
+  setTimeout(() => {
+    setErrors("");
+  }, 5000);
+  }
+}
+    
+  
+
+//     const validate = () =>{
+    
+//     const {error} = Joi.validate(email, schema, {abortEarly:false});
+//     if(!error)return null;
+
+//     const errors = {};
+//     for(let item of error.details)
+//     errors[item.path[0]]=item.message;
+
+// return errors;
+
+//     }
+
+//     const validateProperty = ({name, value}) =>{
+  
+//       const obj = {[name]: value};
+//       const subSchema = {
+//       [name]:schema[name]
+//       }
+
+//       const {error} = Joi.validate(obj, subSchema)
+//       return error? error.details[0].message:null;
 
 
-    }    
+//     }    
 
-   const HandleChange = ({currentTarget:input}) =>{
-    const a = {...account};
-    a[input.name]= input.value;
+  //  const HandleChange = ({currentTarget:input}) =>{
+  //   const a = {email};
+  //   const b = {password}
+  //   a[input.name]= input.value;
+  //   b[input.name]= input.value;
 
-    const e = {...errors};
-    const errorMessage = validateProperty(input);
-    if(errorMessage) e[input.name] = errorMessage;
-    else delete e[input.name];
+  //   const e = {...errors};
+  //   const errorMessage = validateProperty(input);
+  //   if(errorMessage) e[input.name] = errorMessage;
+  //   else delete e[input.name];
 
 
-    setErrors(e);
-    setAccount(a);
+  //   setErrors(e);
+  //   setEmail(a);
+  //   setpassword(b);
 
-   } 
+  //  } 
 
 
     return ( 
 <Paper className="LoginPaper" elevation={3}>
 
 <h1 className="text-center pb-4 pt-5">LOG IN</h1>
-      <form onSubmit={HandleSubmit}>
+      <form onSubmit={LoginSubmit}>
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
-    <input type="text" value ={account.email} 
-    onChange={HandleChange}
+    <input type="text" value ={email} 
+    onChange={(e)=> setEmail(e.target.value)}
     name = "email"
+    tabIndex={1}
      className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></input>
      {errors.email && <div className ="alert alert-danger">{errors.email}</div>}
   </div>
   <div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-    <input type="password" value ={account.password} 
-    onChange={HandleChange}
+    <label htmlFor="exampleInputPassword1" className="form-label">Password
+    
+    <Link to="/ForgetPassword" tabIndex={2}>Forget Password ?</Link>
+    </label>
+    <input type="password" value ={password} 
+    onChange={(e)=> setpassword(e.target.value)}
     name ="password"
+    tabIndex={3}
     className="form-control" id="exampleInputPassword1"></input>
     {errors.password && <div className ="alert alert-danger">{errors.password}</div>}
   </div>
   <div className="text-center pt-4">
-  <Button type ="submit" 
+  <Button type ="submit" tabIndex={4} 
       className={classes.LoginButton} >
         LOGIN
       </Button>

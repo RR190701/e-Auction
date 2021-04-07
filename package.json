@@ -1,6 +1,7 @@
 {
   "name": "e-auction",
   "version": "0.1.0",
+  "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.2",
@@ -8,6 +9,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "formik": "^2.2.6",
     "formik-yup": "0.0.5",
