@@ -17,12 +17,12 @@ const AuctionCard = ({title, organisation, info, date, time}) => {
 
         <div className="auction-card-footer">
           <div className="timings">
-            <div>
+            <div className ="timing-date">
               <DateRangeTwoToneIcon color="secondary"></DateRangeTwoToneIcon>
               <span className="timing-content">{date}</span>
             </div>
 
-            <div>
+            <div className="timing-time">
               <ScheduleTwoToneIcon color="secondary"></ScheduleTwoToneIcon>
               <span className="timing-content">{time}</span>
             </div>

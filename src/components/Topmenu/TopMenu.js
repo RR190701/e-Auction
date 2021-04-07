@@ -215,9 +215,14 @@ const TopMenu = () => {
             textColor="secondary"
             centered
           >
-            <Tab label="Upcoming Auction" />
-            <Tab label="Result of Auction" />
-            <Tab label="Host an Auction" />
+            <Tab  className = "auction-tabs"
+            label="Upcoming Auction" />
+            <Tab 
+             className = "auction-tabs"
+             label="Result of Auction" />
+            <Tab 
+             className = "auction-tabs"
+             label="Host an Auction" />
           </Tabs>
           <TabPanel value={value} index={0}>
             <UpcomingAuctions />
