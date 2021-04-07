@@ -1,4 +1,5 @@
 import React ,{useState} from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -25,82 +26,109 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-const ForgetPassword = () => {
+const ForgetPassword = (history) => {
 
     const classes = useStyles();
 
     const [account, setAccount] = useState({ email:""});
     const [errors, setErrors] = useState({});
+    const [error, setError] = useState("");
+    const [email, setEmail] = useState("");
+    const [success, setSuccess] = useState("");
 
-    
-  const  schema = {
-    email: Joi.string().email().required().label("Email Address")
-  };
-
-    
-    const HandleSubmit =(e) =>{
-      e.preventDefault();
-      const errors  = validate();
-      (errors)?setErrors(errors):setErrors({});
-      if(errors)return;
-  
-  
-        //call server
-  alert(JSON.stringify(account))
-          }
-  
-
-    const validate = () =>{
-    
-    const {error} = Joi.validate(account, schema, {abortEarly:false}); //will return errors after checkig for all the fields
-    if(!error)return null;
-
-    const errors = {};
-    for(let item of error.details)
-    errors[item.path[0]]=item.message;
-
-return errors;
-
+  const forgetPasswordHandler = async (e) => {
+    e.preventDefault();    
+    const config = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+        };
+        try{
+            const {data} = await axios.post("/api/auth/forgetpassword", {email}, config);
+            setSuccess(data.data)
+             
+        }catch (error) {
+            
+          setError(error.response.data.error)
+          setEmail("");
+          setTimeout(() => {
+            setError("");
+          }, 5000);
+          
+        }
     }
 
-    const validateProperty = ({name, value}) =>{
+    
+  // const  schema = {
+  //   email: Joi.string().email().required().label("Email Address")
+  // };
+
+    
+//     const HandleSubmit =(e) =>{
+//       e.preventDefault();
+//       const errors  = validate();
+//       (errors)?setErrors(errors):setErrors({});
+//       if(errors)return;
   
-      const obj = {[name]: value};
-      const subSchema = {
-      [name]:schema[name]
-      }
+  
+//         //call server
+//   alert(JSON.stringify(account))
+//           }
+  
 
-      const {error} = Joi.validate(obj, subSchema)
-      return error? error.details[0].message:null;
+//     const validate = () =>{
+    
+//     const {error} = Joi.validate(account, schema, {abortEarly:false}); //will return errors after checkig for all the fields
+//     if(!error)return null;
+
+//     const errors = {};
+//     for(let item of error.details)
+//     errors[item.path[0]]=item.message;
+
+// return errors;
+
+//     }
+
+//     const validateProperty = ({name, value}) =>{
+  
+//       const obj = {[name]: value};
+//       const subSchema = {
+//       [name]:schema[name]
+//       }
+
+//       const {error} = Joi.validate(obj, subSchema)
+//       return error? error.details[0].message:null;
 
 
-    }    
+//     }    
 
-   const HandleChange = ({currentTarget:input}) =>{
-    const a = {...account};
-    a[input.name]= input.value;
+  //  const HandleChange = ({currentTarget:input}) =>{
+  //   const a = {...account};
+  //   a[input.name]= input.value;
 
-    const e = {...errors};
-    const errorMessage = validateProperty(input);
-    if(errorMessage) e[input.name] = errorMessage;
-    else delete e[input.name];
+  //   const e = {...errors};
+  //   const errorMessage = validateProperty(input);
+  //   if(errorMessage) e[input.name] = errorMessage;
+  //   else delete e[input.name];
 
 
-    setErrors(e);
-    setAccount(a);
+  //   setErrors(e);
+  //   setAccount(a);
 
-   } 
+  //  } 
 
 
     return ( 
 <Paper className="ForgetPasswordPaper" elevation={3}>
 
 <h2 className="text-center pb-4 pt-5">FORGET PASSWORD</h2>
-      <form onSubmit={HandleSubmit}>
+      <form onSubmit={forgetPasswordHandler}>
+      {error && <span className="error-message">{error}</span>}
+  {success && <span className="success-message">{success}</span>}
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Enter your registered email</label>
-    <input type="text" value ={account.email} 
-    onChange={HandleChange}
+    <input type="text" value ={email} 
+    onChange={(e)=> setEmail(e.target.value)}
     name = "email"
      className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></input>
      {errors.email && <div className ="alert alert-danger">{errors.email}</div>}

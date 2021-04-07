@@ -7,6 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
+import {useState, useEffect} from 'react';
+import axios from 'axios';
 import CustomCarousel from "../common/CustomCarousel";
 import login_art3 from "../../assets/images/login3.svg";
 import login_art4 from "../../assets/images/login4.svg";
@@ -23,7 +25,6 @@ import Grid from "@material-ui/core/Grid";
 import { Card, CardHeader, CardContent, Divider } from "@material-ui/core";
 import { GiCrucifix } from "react-icons/gi";
 import { ImHammer } from "react-icons/im";
-
 import { BsArrowLeftRight } from "react-icons/bs";
 import { BiRupee } from "react-icons/bi";
 import { AiOutlineFileDone } from "react-icons/ai";
@@ -40,8 +41,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TabPanel(props) {
+function TabPanel(props, {history}) {
   const { children, value, index, ...other } = props;
+  
 
   return (
     <div
@@ -66,12 +68,43 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-const TopMenu = () => {
+const TopMenu = ({history}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const [error, setError] = useState("");
+  const [privateData, setPrivateData] = useState("");
+useEffect(() => {
+  if(!localStorage.getItem("authToken")){
+      history.push("/log-in")
+  }
+
+  const fetchPrivateData = async () => {
+      const config = {
+          headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`
+          }
+      }
+      try{
+          const {data} = await axios.get("/api/private", config);
+          setPrivateData(data.data)
+           
+      }catch (error) {
+          localStorage.removeItem("authToken");
+          setError('not authorized')
+      }
+  }
+  fetchPrivateData();
+},[history]);
+  
+const logoutHandler = () => {
+  localStorage.removeItem("authToken");
+  history.push("/log-in");
+
+};
   return (
     <div className={classes.root}>
       <AppBar position="static" color="primary">
@@ -92,13 +125,13 @@ const TopMenu = () => {
             e-Auction
           </Typography>
           {/* <ButtonGroup size="small" aria-label="small outlined button group"> */}
-          <Link to="/log-in">
+          {/* <Link to="/log-in"> */}
             {" "}
-            <Button className="header">Login</Button>
-          </Link>
-          <Link to="/sign-up">
-            <Button className="header">Signup</Button>
-          </Link>
+            <Button className="header" onClick={logoutHandler}>Logout</Button>
+          {/* </Link> */}
+          {/* <Link to="/sign-up"> */}
+            <Button className="header">Take Part</Button>
+          {/* </Link> */}
           {/* </ButtonGroup> */}
         </Toolbar>
       </AppBar>
@@ -201,7 +234,7 @@ const TopMenu = () => {
           </Card>
         </Grid>
       </Grid>
-
+<Card><div style={{backgroundColor: "green"}}>{privateData}</div></Card>
       <hr />
       
         <div  className = "service">
