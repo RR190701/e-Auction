@@ -1,63 +1,57 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import "./style.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Error from "./Error";
-import axios from 'axios';
-import {Link} from 'react-router-dom'
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-const SignUp = ({history}) => {
-const [error, setError] = useState("");
-const [email, setEmail] = useState("");
-const [username, setusername] = useState("");
-const [password, setpassword] = useState("");
-const [profession, setprofession] = useState("");
-const [address, setaddress] = useState("");
-const [age, setage] = useState("");
-const [number, setnumber] = useState("");
-  
+const SignUp = ({ history }) => {
+  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
+  const [profession, setprofession] = useState("");
+  const [address, setaddress] = useState("");
+  const [age, setage] = useState("");
+  const [number, setnumber] = useState("");
 
-useEffect(() => {
-  if(localStorage.getItem("authToken")){
-    history.push("/");
-  }
-}, [history])
-const emailTakens = [
-    "test@gmail.com",
-    "rashikarawat01@gmail.com"
-  ]
+  useEffect(() => {
+    if (localStorage.getItem("authToken")) {
+      history.push("/");
+    }
+  }, [history]);
+  const emailTakens = ["test@gmail.com", "rashikarawat01@gmail.com"];
 
   //validation schema
   const ValidationSchema = Yup.object().shape({
     username: Yup.string()
-    .trim()
+      .trim()
       .min(5, "*Too Short!")
       .max(50, "*Too Long!")
       .required("*Name is required"),
 
-      profession: Yup.string()
+    profession: Yup.string()
       .trim()
       .min(2, "*Too Short!")
       .max(50, "*Too Long!")
       .required("*Profession is required"),
 
     zip: Yup.string()
-      .matches(/^[1-9][0-9]{5}$/,
-        "*Invalid Zip")
+      .matches(/^[1-9][0-9]{5}$/, "*Invalid Zip")
       .required("*Zip is required"),
 
     password: Yup.string()
-    .trim()
+      .trim()
       .required("*Password is required.")
       .min(8, "*Password is too short - should be 8 chars minimum.")
       .matches(/^(?=.*[0-9])/, "*Password must contain a number."),
 
-      
     confirmPassword: Yup.string()
-    .trim()
-    .oneOf([Yup.ref('password'.trim())],"Password should match")
-    .required("*Password is required."),
+      .trim()
+      .oneOf([Yup.ref("password".trim())], "Password should match")
+      .required("*Password is required."),
 
     age: Yup.number()
       .required("*Age is required")
@@ -65,19 +59,18 @@ const emailTakens = [
       .max(99, "*Must be younger than 99"),
 
     address: Yup.string()
-    .trim()
+      .trim()
       .min(10, "Too Short!")
       .max(50, "Too Long!")
       .required("*Address is required"),
 
     city: Yup.string()
-    .trim()
+      .trim()
       .min(2, "Too Short!")
       .max(50, "Too Long!")
       .required("*City is required"),
 
-
-      about: Yup.string()
+    about: Yup.string()
       .trim()
       .required("*About is required")
       .min(5, "Too Short!")
@@ -87,12 +80,10 @@ const emailTakens = [
       .matches(/\d{5}([- ]*)\d{6}/, "*Invalid phone number")
       .required("*Number is required"),
 
-      
-    state: Yup.string()
-    .required("*State is required"),
+    state: Yup.string().required("*State is required"),
 
     email: Yup.string()
-    .trim()
+      .trim()
       .lowercase()
       .email("*Must be a valid email address")
       .notOneOf(emailTakens, "*Email already taken")
@@ -104,30 +95,26 @@ const emailTakens = [
     e.preventDefault();
     const config = {
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const { data } = await axios.post(
+        "/api/auth/register",
+        { username, email, password, number, age, profession, address },
+        config
+      );
+      localStorage.setItem("authToken", data.token);
+      history.push("/");
+    } catch (error) {
+      setError(error.response.data.error);
+      setTimeout(() => {
+        setError("");
+      }, 5000);
     }
-try {
-  const {data} = await axios.post("/api/auth/register", {username, email, password, number, age, profession, address},config);
-localStorage.setItem("authToken", data.token);
-history.push('/');
-} catch (error)
-{
-  setError(error.response.data.error)
-  setTimeout(() => {
-    setError("");
-  }, 5000);
-  }
-}
-    
-
-
+  };
 
   //removing confirmPassword
-
-
-
-  
 
   return (
     <Formik
@@ -138,11 +125,11 @@ history.push('/');
         // email: "",
         // password: "",
         confirmPassword: "",
-        about:"",
+        about: "",
         // age: "",
         // address: "",
         city: "",
-        state:"",
+        state: "",
         zip: "",
       }}
       validationSchema={ValidationSchema}
@@ -158,7 +145,6 @@ history.push('/');
         isSubmitting,
         setFieldValue,
       }) => (
-
         //sign up form
         <Paper className="sign-in-form" elevation={3}>
           {/* sign heading */}
@@ -172,7 +158,7 @@ history.push('/');
               <input
                 type="text"
                 name="username"
-                onChange={(e)=> setusername(e.target.value)}
+                onChange={(e) => setusername(e.target.value)}
                 id="username"
                 onBlur={handleBlur}
                 value={username}
@@ -190,7 +176,7 @@ history.push('/');
                 type="text"
                 name="profession"
                 id="profession"
-                onChange={(e)=> setprofession(e.target.value)}
+                onChange={(e) => setprofession(e.target.value)}
                 onBlur={handleBlur}
                 value={profession}
                 className="form-control"
@@ -207,7 +193,7 @@ history.push('/');
                 type="text"
                 name="number"
                 id="number"
-                onChange={(e)=> setnumber(e.target.value)}
+                onChange={(e) => setnumber(e.target.value)}
                 onBlur={handleBlur}
                 value={number}
                 className="form-control"
@@ -224,7 +210,7 @@ history.push('/');
                 type="text"
                 name="email"
                 id="email"
-                onChange={(e)=> setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 onBlur={handleBlur}
                 className="form-control"
@@ -241,7 +227,7 @@ history.push('/');
                 type="password"
                 name="password"
                 id="password"
-                onChange={(e)=> setpassword(e.target.value)}
+                onChange={(e) => setpassword(e.target.value)}
                 onBlur={handleBlur}
                 value={password}
                 className="form-control"
@@ -249,7 +235,7 @@ history.push('/');
               <Error touched={touched.password} message={errors.password} />
             </div>
 
-             {/* confirm password */}
+            {/* confirm password */}
             <div className="col-md-6">
               <label htmlFor="confirmPassword" className="form-label">
                 Confirm Password
@@ -260,13 +246,16 @@ history.push('/');
                 id="confirmPassword"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                 value={values.confirmPassword}
+                value={values.confirmPassword}
                 className="form-control"
               />
-              <Error touched={touched.confirmPassword} message={errors.confirmPassword} />
+              <Error
+                touched={touched.confirmPassword}
+                message={errors.confirmPassword}
+              />
             </div>
 
-             {/* about */}
+            {/* about */}
             <div className="col-md-12">
               <label htmlFor="about" className="form-label">
                 About
@@ -274,7 +263,7 @@ history.push('/');
               <input
                 type="text"
                 className="form-control"
-                name = "about"
+                name="about"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.about}
@@ -292,8 +281,8 @@ history.push('/');
               <input
                 type="text"
                 className="form-control"
-                name = "age"
-                onChange={(e)=> setage(e.target.value)}
+                name="age"
+                onChange={(e) => setage(e.target.value)}
                 onBlur={handleBlur}
                 value={age}
                 id="age"
@@ -301,7 +290,7 @@ history.push('/');
               <Error touched={touched.age} message={errors.age} />
             </div>
 
-             {/* address */}
+            {/* address */}
             <div className="col-md-9">
               <label htmlFor="Address" className="form-label">
                 Full Address
@@ -309,7 +298,7 @@ history.push('/');
               <input
                 type="text"
                 className="form-control"
-                onChange={(e)=> setaddress(e.target.value)}
+                onChange={(e) => setaddress(e.target.value)}
                 onBlur={handleBlur}
                 value={address}
                 id="address"
@@ -317,8 +306,8 @@ history.push('/');
               />
               <Error touched={touched.address} message={errors.address} />
             </div>
-             
-              {/* city */}
+
+            {/* city */}
             <div className="col-md-6">
               <label htmlFor="city" className="form-label">
                 City
@@ -326,7 +315,7 @@ history.push('/');
               <input
                 type="text"
                 className="form-control"
-                name = "city"
+                name="city"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 id="city"
@@ -335,19 +324,21 @@ history.push('/');
               <Error touched={touched.city} message={errors.city} />
             </div>
 
-             {/* state */}
+            {/* state */}
             <div className="col-md-4">
               <label htmlFor="state" className="form-label">
                 State
               </label>
-              <select id="state" className="form-select"
-                 type="text"
-                 name = "state"
-                 onChange={handleChange}
-                 onBlur={handleBlur}
-                 id="state"
-                 value={values.state}>
-
+              <select
+                id="state"
+                className="form-select"
+                type="text"
+                name="state"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="state"
+                value={values.state}
+              >
                 <option selected></option>
                 <option>Andhra Pradesh</option>
                 <option>Arunachal Pradesh</option>
@@ -381,7 +372,7 @@ history.push('/');
               <Error touched={touched.state} message={errors.state} />
             </div>
 
-             {/* zip */}
+            {/* zip */}
             <div className="col-md-2">
               <label htmlfor="zip" className="form-label">
                 Zip
@@ -389,7 +380,7 @@ history.push('/');
               <input
                 type="text"
                 className="form-control"
-                name= "zip"
+                name="zip"
                 id="zip"
                 onChange={handleChange}
                 onBlur={handleBlur}
