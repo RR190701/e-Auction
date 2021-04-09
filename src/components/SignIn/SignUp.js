@@ -12,6 +12,10 @@ const [error, setError] = useState("");
 const [email, setEmail] = useState("");
 const [username, setusername] = useState("");
 const [password, setpassword] = useState("");
+const [profession, setprofession] = useState("");
+const [address, setaddress] = useState("");
+const [age, setage] = useState("");
+const [number, setnumber] = useState("");
   
 
 useEffect(() => {
@@ -104,9 +108,9 @@ const emailTakens = [
       }
     }
 try {
-  const {data} = await axios.post("/api/auth/register", {username, email, password},config);
+  const {data} = await axios.post("/api/auth/register", {username, email, password, number, age, profession, address},config);
 localStorage.setItem("authToken", data.token);
-history.pushState('/');
+history.push('/');
 } catch (error)
 {
   setError(error.response.data.error)
@@ -129,14 +133,14 @@ history.pushState('/');
     <Formik
       initialValues={{
         // fullname: "",
-        profession:"",
-        number: "",
+        // profession:"",
+        // number: "",
         // email: "",
         // password: "",
         confirmPassword: "",
         about:"",
-        age: "",
-        address: "",
+        // age: "",
+        // address: "",
         city: "",
         state:"",
         zip: "",
@@ -186,9 +190,9 @@ history.pushState('/');
                 type="text"
                 name="profession"
                 id="profession"
-                onChange={handleChange}
+                onChange={(e)=> setprofession(e.target.value)}
                 onBlur={handleBlur}
-                value={values.profession}
+                value={profession}
                 className="form-control"
               />
               <Error touched={touched.profession} message={errors.profession} />
@@ -203,9 +207,9 @@ history.pushState('/');
                 type="text"
                 name="number"
                 id="number"
-                onChange={handleChange}
+                onChange={(e)=> setnumber(e.target.value)}
                 onBlur={handleBlur}
-                value={values.number}
+                value={number}
                 className="form-control"
               />
               <Error touched={touched.number} message={errors.number} />
@@ -289,9 +293,9 @@ history.pushState('/');
                 type="text"
                 className="form-control"
                 name = "age"
-                onChange={handleChange}
+                onChange={(e)=> setage(e.target.value)}
                 onBlur={handleBlur}
-                value={values.age}
+                value={age}
                 id="age"
               ></input>
               <Error touched={touched.age} message={errors.age} />
@@ -305,9 +309,9 @@ history.pushState('/');
               <input
                 type="text"
                 className="form-control"
-                onChange={handleChange}
+                onChange={(e)=> setaddress(e.target.value)}
                 onBlur={handleBlur}
-                value={values.address}
+                value={address}
                 id="address"
                 placeholder="Full Address ..."
               />
