@@ -13,11 +13,11 @@ const App = () => {
  return(
    <React.Fragment>
      <Router>
-       <PrivateRoute exact path="/" component={TopMenu}/>
-       {/* <Route path ='/' exact component = {TopMenu}></Route> */}
-       <Route path ='/log-in' exact component ={LogIn}></Route>
-       <Route path ='/sign-up'component ={SignUp}></Route>
-       <Route path="/profile/:username" component ={Profile}></Route>
+       <PrivateRoute exact path="/profile" component={Profile}/>
+       <Route exact path ='/' exact component = {TopMenu}></Route>
+       <Route  exact path ='/log-in' exact component ={LogIn}></Route>
+       <Route   exact path ='/sign-up'component ={SignUp}></Route>
+       {/* <Route path="/profile" component ={Profile}></Route> */}
        <Route path = "/ForgetPassword" component ={ForgetPassword}></Route>
        <Route path = "/passwordreset:resetToken" component ={ResetPassword}></Route>
      </Router>

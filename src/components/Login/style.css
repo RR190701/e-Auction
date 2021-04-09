@@ -5,6 +5,15 @@
     padding: 0 3rem 3rem;
     margin: 3rem auto;
    }
+
+   .helpful-link {
+margin-top: 10px;
+   }
+
+   .helpful-link:link{
+    margin-left: 5px;
+       }
+
    @media(max-width:445px){
 
     .LoginPaper {
