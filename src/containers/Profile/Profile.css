@@ -2,6 +2,7 @@
     width: 100%;
     box-sizing: border-box;
     background-color: #f8f8f8;
+    margin-top: 4rem;
 }
 .side-bar {
     width: 27%;
@@ -33,3 +34,9 @@
     padding: 6px;
 }
 }
+
+@media(max-width:625px){
+    .Profile-div{
+        margin-top: 3rem;
+    }
+    }

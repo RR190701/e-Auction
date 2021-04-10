@@ -148,7 +148,7 @@ const SignUp = ({ history }) => {
         //sign up form
         <Paper className="sign-in-form" elevation={3}>
           {/* sign heading */}
-          <h1 className="text-center pb-5 sign-in-heading">SIGN IN</h1>
+          <h1 className="text-center pb-5 sign-in-heading">SIGN UP</h1>
           <form onSubmit={HandleSubmit} className="row g-3">
             {/* full name */}
             <div className="col-md-6">
