@@ -6,6 +6,8 @@ import Joi from "joi-browser";
 import "./style.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
   LoginButton: {
@@ -25,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 const LogIn = ({ history }) => {
   const classes = useStyles();
 
+
+
   // const [account, setAccount] = useState({ email :"", password: ""});
   const [errors, setErrors] = useState("");
   const [email, setEmail] = useState("");
@@ -41,6 +45,15 @@ const LogIn = ({ history }) => {
   //   email: Joi.string().email().required().label("Email Address"),
   //   password: Joi.string().required().label("Password")
   // };
+
+  //error toast fucntion
+  const popError = (errorMessage) => {
+
+    toast.error(errorMessage, {
+      className :"error-toast",
+      position:toast.POSITION.BOTTOM_RIGHT
+    });
+  }
 
   const LoginSubmit = async (e) => {
   
@@ -62,9 +75,12 @@ const LogIn = ({ history }) => {
         config
       );
       localStorage.setItem("authToken", data.token);
-      history.push("/profile");
+
+
+     // history.push("/profile");
     } catch (error) {
-      setErrors(error.response.data.error);
+      popError(error.response.data.error);
+      console.log(error.response.data.error);
       setTimeout(() => {
         setErrors("");
       }, 5000);
@@ -116,6 +132,14 @@ const LogIn = ({ history }) => {
 
   return (
     <Paper className="LoginPaper" elevation={3}>
+      <>
+      
+      <ToastContainer
+      draggable ={false}
+      autoClose={3000}
+      ></ToastContainer>
+
+      </>
       <h1 className="text-center pb-4 pt-5">LOG IN</h1>
       <form onSubmit={LoginSubmit}>
         <div className="mb-3">
