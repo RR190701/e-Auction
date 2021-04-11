@@ -22,7 +22,7 @@ const App = () => {
        <Route   exact path ='/sign-up'component ={SignUp}></Route>
        {/* <Route path="/profile" component ={Profile}></Route> */}
        <Route path = "/ForgetPassword" component ={ForgetPassword}></Route>
-       <Route path = "/passwordreset:resetToken" component ={ResetPassword}></Route>
+       <Route path = "/passwordreset/:resetToken" component ={ResetPassword}></Route>
      </Router>
    </React.Fragment>
  );

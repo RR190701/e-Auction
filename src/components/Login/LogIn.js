@@ -75,7 +75,7 @@ const LogIn = ({ history }) => {
         config
       );
       localStorage.setItem("authToken", data.token);
-
+ 
 
      // history.push("/profile");
     } catch (error) {
