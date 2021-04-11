@@ -30,14 +30,11 @@ const Profile = ({ history }) => {
       
 
       try {
-<<<<<<< HEAD
 
-                 const { data } = await axios.get("/api/private/", config);
-=======
+        //  const { data } = await axios.get("/api/private/", config);
         // console.log(localStorage.getItem("email"))
         const { data } = await axios.get(`/api/private/profile/${localStorage.getItem("email")}`, config);
         // console.log(localStorage.getItem("email"))
->>>>>>> d5235e4c117739145de3f4189b1e12d677f382bc
         setPrivateData(data.data);
         setusername(data.user.username)
         setemail(data.user.email)

@@ -3,8 +3,10 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import Joi from "joi-browser";
+// import Joi from "joi-browser";
 import "./style.css";
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,11 +32,11 @@ const ForgetPassword = (history) => {
 
     const classes = useStyles();
 
-    const [account, setAccount] = useState({ email:""});
-    const [errors, setErrors] = useState({});
-    const [error, setError] = useState("");
+  //  const [account, setAccount] = useState({ email:""});
+   // const [errors, setErrors] = useState({});
+    // const [error, setError] = useState("");
     const [email, setEmail] = useState("");
-    const [success, setSuccess] = useState("");
+   // const [success, setSuccess] = useState("");
 
   const forgetPasswordHandler = async (e) => {
     e.preventDefault();    
@@ -45,14 +47,20 @@ const ForgetPassword = (history) => {
         };
         try{
             const {data} = await axios.post("/api/auth/forgetpassword", {email}, config);
-            setSuccess(data.data)
+
+            toast.success(data.data, {
+              className :"error-toast",
+              position:toast.POSITION.BOTTOM_RIGHT
+            });
              
         }catch (error) {
             
-          setError(error.response.data.error)
+          popError(error.response.data.error);
+          //setError(error.response.data.error)
+          console.log(error.response.data.error);
           setEmail("");
           setTimeout(() => {
-            setError("");
+            //setError("");
           }, 5000);
           
         }
@@ -117,21 +125,37 @@ const ForgetPassword = (history) => {
 
   //  } 
 
+  const popError = (errorMessage) => {
+
+    toast.error(errorMessage, {
+      className :"error-toast",
+      position:toast.POSITION.BOTTOM_RIGHT
+    });
+  }
+
 
     return ( 
 <Paper className="ForgetPasswordPaper" elevation={3}>
 
+<>
+      
+      <ToastContainer
+      draggable ={false}
+      autoClose={3000}
+      ></ToastContainer>
+
+      </>
+
 <h2 className="text-center pb-4 pt-5">FORGET PASSWORD</h2>
       <form onSubmit={forgetPasswordHandler}>
-      {error && <span className="error-message">{error}</span>}
-  {success && <span className="success-message">{success}</span>}
+      {/* {error && <span className="error-message">{error}</span>} */}
+  {/* {success && <span className="success-message">{success}</span>} */}
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Enter your registered email</label>
     <input type="text" value ={email} 
     onChange={(e)=> setEmail(e.target.value)}
     name = "email"
      className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></input>
-     {errors.email && <div className ="alert alert-danger">{errors.email}</div>}
   </div>
 
   <div className="text-center pt-4">
