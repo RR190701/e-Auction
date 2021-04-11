@@ -10,7 +10,7 @@ import "./style.css";
 import Dashboard from './../Dasboard/Dashboard';
 
 
-const ProfileBar = () => {
+const ProfileBar = (props) => {
   
     
     function TabPanel(props) {
@@ -59,7 +59,7 @@ const ProfileBar = () => {
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
-  
+    // console.log(props)
     return (
       <div className={classes.root}>
         <AppBar position="static" className="profile-navbar">
@@ -71,7 +71,7 @@ const ProfileBar = () => {
           </Tabs>
         </AppBar>
         <TabPanel className =" tabpanels" value={value} index={0}>
-            <Dashboard></Dashboard>
+            <Dashboard username={props.username} email={props.email} address={props.address} profession={props.profession}></Dashboard>
     </TabPanel>
         <TabPanel  className =" tabpanels" value={value} index={1}>
         </TabPanel>

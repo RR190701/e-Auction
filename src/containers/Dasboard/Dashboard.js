@@ -5,22 +5,23 @@ import { AiTwotonePhone } from "react-icons/ai";
 
 
 
-const Dashboard = () => {
+const Dashboard = (props) => { 
+    
     return (  
     <div className="dashboard">
    <div className ="personal-info">
         <h1 className="dasboard-heading">personal info</h1>
         <div className="personal-info-enitity">
-       <div className="wedge">username :</div><div className="slant"> Rashika_19</div>
+       <div className="wedge">username :</div><div className="slant"> {props.username}</div>
    </div>
    <div className="personal-info-enitity">
-   <div className="wedge"> Name : </div><div className="slant"> Rashika Rawat</div>
+   <div className="wedge"> email : </div><div className="slant"> {props.email}</div>
    </div>
    <div className="personal-info-enitity">
-   <div className="wedge"> Age : </div ><div className="slant">19</div>
+   <div className="wedge"> Age : </div ><div className="slant">{props.age}</div>
    </div>
    <div className="personal-info-enitity">
-   <div className="wedge"> About :</div><div className="slant"> i am a software developer and curretly working on a project</div>
+   <div className="wedge"> About :</div><div className="slant">{props.about}</div>
    </div>
    </div>
    <div className ="contact">
@@ -31,11 +32,11 @@ const Dashboard = () => {
 </div>
 <div className="email">
     <span>< AiOutlineMail fill="#fa255e" fontSize="1.5rem"/></span>
-    <span style={{marginLeft: "0.5rem"}}>  rashikarawat01@gmail.com</span>
+    <span style={{marginLeft: "0.5rem"}}>{props.email}</span>
 </div>
    </div>
    <div className="Address">
-   <h1 className="dasboard-heading">Address</h1>
+   <h1 className="dasboard-heading">{props.address}</h1>
    <div className="address-enitity">
        <div className="wedge">country :</div><div className="slant"> India</div>
    </div>
@@ -43,7 +44,7 @@ const Dashboard = () => {
    <div className="wedge"> state : </div><div className="slant"> Uttar Pradesh</div>
    </div>
    <div className="address-enitity">
-   <div className="wedge"> full-address : </div><div className="slant">548/549V Vikram nagar Manak Nagar Lucknow</div>
+   <div className="wedge">address:</div><div className="slant">{props.address}</div>
    </div>
    <div className="address-enitity">
    <div className="wedge"> Zip :</div><div className="slant"> 220198</div>
