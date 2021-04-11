@@ -74,10 +74,17 @@ const LogIn = ({ history }) => {
         { email, password },
         config
       );
+     
       localStorage.setItem("authToken", data.token);
+<<<<<<< HEAD
  
+=======
+      localStorage.setItem("email", email)
+    
 
-     // history.push("/profile");
+>>>>>>> d5235e4c117739145de3f4189b1e12d677f382bc
+
+     history.push("/profile");
     } catch (error) {
       popError(error.response.data.error);
       console.log(error.response.data.error);
