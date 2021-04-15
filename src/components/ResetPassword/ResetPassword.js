@@ -28,13 +28,14 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const ResetPassword = (match) => {
+const ResetPassword = ({match}) => {
 
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [success, setSuccess] = useState("");
   const classes = useStyles();
+
   const ResetPasswordHandler = async (e) => {
     e.preventDefault();    
     const config = {
@@ -51,12 +52,14 @@ const ResetPassword = (match) => {
           return setError("password don't match")
         }
         try{
-            const {data} = await axios.put(`/api/auth/passwordreset/${match.params.resetToken}`,{ password}, config);
+       
+            const {data} = await axios.put(`/api/auth/resetpassword/${match.params.resetToken}`,{password}, config);
             setSuccess(data.data)
              
         }catch (error) {
             
           setError(error.response.data.error)
+          console.log(error.response);
           
           setTimeout(() => {
             setError("");
@@ -101,6 +104,7 @@ const ResetPassword = (match) => {
 //   }, 500);
 
 // }
+
 
 
   return (
