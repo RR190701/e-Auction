@@ -9,6 +9,7 @@ import ResetPassword from './components/ResetPassword/ResetPassword';
 import PrivateRoute from './components/routing/PrivateRoute';
 //import PrivateScreen from "./components/privateScreen";
 import Navbar from "./components/Navbar/Navbar"
+import AuctionDetails from './containers/AuctionDetails/AuctionDetails';
 const App = () => {
 
  return(
@@ -23,6 +24,7 @@ const App = () => {
        {/* <Route path="/profile" component ={Profile}></Route> */}
        <Route path = "/ForgetPassword" component ={ForgetPassword}></Route>
        <Route path = "/passwordreset/:resetToken" component ={ResetPassword}></Route>
+       <Route path ="/auction/:auctionID" component ={AuctionDetails}></Route>
      </Router>
    </React.Fragment>
  );

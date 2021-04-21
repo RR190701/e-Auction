@@ -151,14 +151,14 @@ const LogIn = ({ history }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             name="email"
-            tabIndex={1}
+            // tabIndex={1}
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
           ></input>
-          {/* {errors.email && (
+          {errors.email && (
             <div className="alert alert-danger">{errors.email}</div>
-          )} */}
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
@@ -169,13 +169,13 @@ const LogIn = ({ history }) => {
             value={password}
             onChange={(e) => setpassword(e.target.value)}
             name="password"
-            tabIndex={3}
+            // tabIndex={3}
             className="form-control"
             id="exampleInputPassword1"
           ></input>
-          {/* {errors.password && (
+          {errors.password && (
             <div className="alert alert-danger">{errors.password}</div>
-          )} */}
+          )}
         </div>
         <div className="text-center pt-4">
           <Button type="submit" tabIndex={4} className={classes.LoginButton}>
