@@ -1,13 +1,66 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import Paper from "@material-ui/core/Paper";
 import Magnifier from "react-magnifier";
 import { ImHammer2 } from "react-icons/im";
-import { GoPrimitiveDot } from "react-icons/go";
 
 
 import "./style.css";
+// import { useState } from 'react';
 
-const AuctionDetails = () => {
+const AuctionDetails = ({match, history}) => {
+
+
+  const [auctionName, setAuctionName] = useState("");
+  const [discription, setDiscription] = useState("");
+  const [minEstimation, setMinEstimation] = useState("");
+  const [maxEstimation, setMaxEstimation] = useState("");
+  const [auctioneer, setAuctioneer] = useState("");
+  const [location, setLocation] = useState("");
+  const [lot, setLot] = useState("");
+  const [timings, setTimings] = useState("");
+ // const [maxEstimation, setMaxEstimation] = useState("");
+
+  useEffect(() => {
+
+    if (!localStorage.getItem("authToken")) {
+      history.push("/log-in");
+    }
+
+    const fetchAuctionDetails = async() => {
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+      };
+
+      //fetching data
+      try{
+
+        const { data } = await axios.get(`/api/auction/biding/${match.params.auctionID}`, config);
+        setAuctionName(data.auction.auctionName);
+        setDiscription(data.auction.discription);
+        setMinEstimation(data.auction.minEstimation);
+        setMaxEstimation(data.auction.maxEstimation);
+        setAuctioneer(data.auction.auctioneer);
+        setLocation(data.auction.location);
+        setTimings(data.auction.timings);
+        setLot(data.auction.lot);
+        console.log(data.auction);
+}
+
+      catch(error){
+     console.log(error.response.data.error);
+      }
+    }
+
+    fetchAuctionDetails();
+
+  },[history]);
+
+
     return ( 
         <div className ="auction-detail-div">
         <Paper className ="auction-detail-paper" elavation ={3}>
@@ -20,7 +73,7 @@ const AuctionDetails = () => {
            style ={{ padding:"5px", backgroundColor:"#fa255e", borderRadius:"5px" }}
            ></ImHammer2>
            <h3 className="auction-heading">
-           Hella Commet
+           {auctionName}
            </h3>
 
           </div>
@@ -50,7 +103,7 @@ type ="number"
 className="bid-input"
 placeholder="Enter your max bid"></input>
 <button className="bid-button">Place Bid</button>
-<span className="bid-span">*You can bid at a minimum of 10,000</span>
+<span className="bid-span">*You can bid at a minimum of {minEstimation}</span>
 </div>
 </div>
   <div className="biding-system-buttons-div">
@@ -63,15 +116,15 @@ placeholder="Enter your max bid"></input>
 
            <div className = "auctioneer-details">
     <div className = "auctioneer-details-fir">Auctioneer:</div>
-    <div className = "auctioneer-details-sec">Ratan Tata</div>
+    <div className = "auctioneer-details-sec">{auctioneer}</div>
     <div className = "auctioneer-details-fir">Lot:</div>
-    <div className = "auctioneer-details-sec">2</div>
+    <div className = "auctioneer-details-sec">{lot}</div>
     <div className = "auctioneer-details-fir">estimation:</div>
-    <div className = "auctioneer-details-sec">10,000$ - 15,000$</div>
+    <div className = "auctioneer-details-sec">{minEstimation} - {maxEstimation}</div>
     <div className = "auctioneer-details-fir">Location:</div>
-    <div className = "auctioneer-details-sec">Bilampur, Mumbai</div>
+    <div className = "auctioneer-details-sec">{location}</div>
     <div className = "auctioneer-details-fir">Timings:</div>
-    <div className = "auctioneer-details-sec">23-07-2020, 10:30 AM</div>
+    <div className = "auctioneer-details-sec">{timings}</div>
  
   </div>
 
@@ -82,7 +135,7 @@ placeholder="Enter your max bid"></input>
         <div className="discription-box">
         <h2 className ="catalogue">Catalogue</h2> 
         <p className="discription">
-          A glass vase for sale, glass is not cracked and well polished , milton company brand no 1028948.
+         {discription}
         </p>
         </div>
 
