@@ -3,6 +3,8 @@ import axios from 'axios';
 import Paper from "@material-ui/core/Paper";
 import Magnifier from "react-magnifier";
 import { ImHammer2 } from "react-icons/im";
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import "./style.css";
@@ -10,7 +12,7 @@ import "./style.css";
 
 const AuctionDetails = ({match, history}) => {
 
-
+  const [auctionID, setAuctionID] = useState("");
   const [auctionName, setAuctionName] = useState("");
   const [discription, setDiscription] = useState("");
   const [minEstimation, setMinEstimation] = useState("");
@@ -19,6 +21,8 @@ const AuctionDetails = ({match, history}) => {
   const [location, setLocation] = useState("");
   const [lot, setLot] = useState("");
   const [timings, setTimings] = useState("");
+  const [bid, setBid] = useState("");
+  const [error, setError] = useState("");
  // const [maxEstimation, setMaxEstimation] = useState("");
 
   useEffect(() => {
@@ -48,7 +52,8 @@ const AuctionDetails = ({match, history}) => {
         setLocation(data.auction.location);
         setTimings(data.auction.timings);
         setLot(data.auction.lot);
-        console.log(data.auction);
+        setAuctionID(data.auction.auctionID);
+        console.log(auctionID);
 }
 
       catch(error){
@@ -61,9 +66,90 @@ const AuctionDetails = ({match, history}) => {
   },[history]);
 
 
+  //bid handler
+  const bidHandler = (e) =>{
+setBid(e.target.value);
+
+
+  }
+
+
+
+const placeBidHandler = async() =>{
+
+  
+if(isNaN(bid)){
+  setError("*please enter a valid bid value");
+  return;
+}
+else if(bid<minEstimation){
+  setError(`*you can bid minimun of ${minEstimation}`);
+  return;
+}
+else {
+  setError("");
+  
+}
+
+//dummy usernsme
+const username = "xyz";
+
+const config = {
+
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
+//sending bid
+try {
+  const { data } = await axios.post(
+    `/api/auction/registerBid/${auctionID}`,
+    { username, bid },
+    config
+  );
+ 
+  console.log(data.data);
+  toast.success(data.data, {
+    className :"error-toast",
+    position:toast.POSITION.TOP_CENTER
+  });
+
+
+  
+} catch (error) {
+
+  console.log(error.response.data.error);
+      toast.error(error.response.data.error, {
+      className :"error-toast",
+      position:toast.POSITION.TOP_CENTER
+    });
+
+  // setTimeout(() => {
+  //   setErrors("");
+  // }, 5000);
+}
+
+
+  setBid("");
+
+
+};
+
+
+
     return ( 
         <div className ="auction-detail-div">
         <Paper className ="auction-detail-paper" elavation ={3}>
+
+        <>
+      
+      <ToastContainer
+      draggable ={false}
+      autoClose={3000}
+      ></ToastContainer>
+
+      </>
 
           {/* auction details heading */}
           <div className="auction-details-heading-container">
@@ -100,10 +186,13 @@ const AuctionDetails = ({match, history}) => {
 <label className="bid-label" htmlFor="bid">*Place your bid :</label>
 <input id= "bid"
 type ="number"
+value = {bid}
+onChange = {bidHandler}
 className="bid-input"
 placeholder="Enter your max bid"></input>
-<button className="bid-button">Place Bid</button>
-<span className="bid-span">*You can bid at a minimum of {minEstimation}</span>
+<button onClick={placeBidHandler} className="bid-button">Place Bid</button>
+{error && <span className ="biding-price-error">{error}</span>}
+<span className="bid-span">~You can bid at a minimum of {minEstimation}</span>
 </div>
 </div>
   <div className="biding-system-buttons-div">

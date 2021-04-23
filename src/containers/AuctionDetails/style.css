@@ -155,6 +155,12 @@ text-transform: capitalize;
     transition: all ease 0.3s;
 }
 
+.biding-price-error{
+width: 100%;
+font-size: 13px;
+color: red;
+}
+
 .discription-box{
     padding: 2rem 2rem 2rem 0;
 }
