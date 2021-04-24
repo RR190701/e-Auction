@@ -4,14 +4,27 @@ import "./style.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Error from "./Error";
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 import axios from "axios";
+import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom";
-
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 const SignUp = ({ history }) => {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
+  const [Confirmpassword, setConfirmpassword] = useState("");
   const [profession, setprofession] = useState("");
   const [address, setaddress] = useState("");
   const [age, setage] = useState("");
@@ -89,7 +102,13 @@ const SignUp = ({ history }) => {
       .notOneOf(emailTakens, "*Email already taken")
       .required("*Email is required"),
   });
+  const popError = (errorMessage) => {
 
+    toast.error(errorMessage, {
+      className :"error-toast",
+      position:toast.POSITION.BOTTOM_RIGHT
+    });
+  }
   //on handle
   const HandleSubmit = async (e) => {
     e.preventDefault();
@@ -107,7 +126,9 @@ const SignUp = ({ history }) => {
       localStorage.setItem("authToken", data.token);
       history.push("/");
     } catch (error) {
+      popError(error.response.data.error);
       setError(error.response.data.error);
+     
       setTimeout(() => {
         setError("");
       }, 5000);
@@ -120,7 +141,7 @@ const SignUp = ({ history }) => {
     <Formik
       initialValues={{
         // fullname: "",
-        // profession:"",
+        // profession: "",
         // number: "",
         // email: "",
         // password: "",
@@ -139,7 +160,7 @@ const SignUp = ({ history }) => {
         values,
         errors,
         touched,
-        handleChange,
+        // handleChange,
         handleBlur,
         handleSubmit,
         isSubmitting,
@@ -147,16 +168,28 @@ const SignUp = ({ history }) => {
       }) => (
         //sign up form
         <Paper className="sign-in-form" elevation={3}>
+           <>
+      
+      <ToastContainer
+      draggable ={false}
+      autoClose={3000}
+      ></ToastContainer>
+
+      </>
           {/* sign heading */}
-          <h1 className="text-center pb-5 sign-in-heading">SIGN UP</h1>
+          <h1 className="text-center pb-5 sign-in-heading" style={{fontFamily: 'Cursive'}}>SIGN UP</h1>
           <form onSubmit={HandleSubmit} className="row g-3">
             {/* full name */}
             <div className="col-md-6">
-              <label htmlFor="fullname" className="form-label">
+              {/* <label htmlFor="fullname" className="form-label">
                 User Name
-              </label>
-              <input
+              </label> */}
+              <TextField
                 type="text"
+                
+                color="secondary"
+                required
+                label="Username"
                 name="username"
                 onChange={(e) => setusername(e.target.value)}
                 id="username"
@@ -164,33 +197,39 @@ const SignUp = ({ history }) => {
                 value={username}
                 className="form-control"
               />
-              <Error touched={touched.fullname} message={errors.fullname} />
+              {/* <Error touched={touched.fullname} message={errors.fullname} /> */}
             </div>
 
             {/* profession */}
             <div className="col-md-6">
-              <label htmlFor="profession" className="form-label">
+              {/* <label htmlFor="profession" className="form-label">
                 Profession
-              </label>
-              <input
+              </label> */}
+              <TextField
                 type="text"
+                color="secondary"
+                required
+                label="Profession"
                 name="profession"
                 id="profession"
                 onChange={(e) => setprofession(e.target.value)}
+                // onChange={handleChange}
                 onBlur={handleBlur}
                 value={profession}
                 className="form-control"
               />
-              <Error touched={touched.profession} message={errors.profession} />
+              {/* <Error touched={touched.profession} message={errors.profession} /> */}
             </div>
-
             {/* phone number */}
             <div className="col-md-6">
-              <label htmlFor="number" className="form-label">
+              {/* <label htmlFor="number" className="form-label">
                 Contact Number
-              </label>
-              <input
+              </label> */}
+              <TextField
                 type="text"
+                required
+                color="secondary"
+                label="Contact Number"
                 name="number"
                 id="number"
                 onChange={(e) => setnumber(e.target.value)}
@@ -198,16 +237,19 @@ const SignUp = ({ history }) => {
                 value={number}
                 className="form-control"
               />
-              <Error touched={touched.number} message={errors.number} />
+              {/* <Error touched={touched.number} message={errors.number} /> */}
             </div>
 
             {/* email */}
             <div className="col-md-6">
-              <label htmlFor="email" className="form-label">
+              {/* <label htmlFor="email" className="form-label">
                 Email ID
-              </label>
-              <input
+              </label> */}
+              <TextField
                 type="text"
+                required
+                color="secondary"
+                label="Email"
                 name="email"
                 id="email"
                 onChange={(e) => setEmail(e.target.value)}
@@ -215,88 +257,103 @@ const SignUp = ({ history }) => {
                 onBlur={handleBlur}
                 className="form-control"
               />
-              <Error touched={touched.email} message={errors.email} />
+              {/* <Error touched={touched.email} message={errors.email} /> */}
             </div>
 
             {/* password */}
             <div className="col-md-6">
-              <label htmlFor="password" className="form-label">
+              {/* <label htmlFor="password" className="form-label">
                 Password
-              </label>
-              <input
+              </label> */}
+              <TextField
+              required
+              label="Password"
                 type="password"
                 name="password"
+                color="secondary"
                 id="password"
                 onChange={(e) => setpassword(e.target.value)}
                 onBlur={handleBlur}
                 value={password}
                 className="form-control"
               />
-              <Error touched={touched.password} message={errors.password} />
+              {/* <Error touched={touched.password} message={errors.password} /> */}
             </div>
 
             {/* confirm password */}
             <div className="col-md-6">
-              <label htmlFor="confirmPassword" className="form-label">
+              {/* <label htmlFor="confirmPassword" className="form-label">
                 Confirm Password
-              </label>
-              <input
+              </label> */}
+              <TextField
+              // required
                 type="password"
                 name="confirmPassword"
                 id="confirmPassword"
-                onChange={handleChange}
+                color="secondary"
+                label="Confirm Password"
+                onChange={(e) => setConfirmpassword(e.target.value)}
                 onBlur={handleBlur}
                 value={values.confirmPassword}
                 className="form-control"
               />
-              <Error
+              {/* <Error
                 touched={touched.confirmPassword}
                 message={errors.confirmPassword}
-              />
+              /> */}
             </div>
 
             {/* about */}
             <div className="col-md-12">
-              <label htmlFor="about" className="form-label">
+              {/* <label htmlFor="about" className="form-label">
                 About
-              </label>
-              <input
+              </label> */}
+              <TextField
+              // required
                 type="text"
+                label="About"
                 className="form-control"
+                color="secondary"
                 name="about"
-                onChange={handleChange}
+                // onChange={(e) => setabout(e.target.value)}
                 onBlur={handleBlur}
                 value={values.about}
                 id="about"
                 placeholder="Tell us something about you.."
               />
-              <Error touched={touched.about} message={errors.about} />
+              {/* <Error touched={touched.about} message={errors.about} /> */}
             </div>
 
             {/* age */}
             <div className="col-md-3">
-              <label htmlFor="age" className="form-label">
+              {/* <label htmlFor="age" className="form-label">
                 Age
-              </label>
-              <input
+              </label> */}
+              <TextField
                 type="text"
+                required
+                label="Age"
+                color="secondary"
                 className="form-control"
                 name="age"
                 onChange={(e) => setage(e.target.value)}
                 onBlur={handleBlur}
                 value={age}
                 id="age"
-              ></input>
-              <Error touched={touched.age} message={errors.age} />
+              />
+              {/* <Error touched={touched.age} message={errors.age} /> */}
             </div>
 
             {/* address */}
             <div className="col-md-9">
-              <label htmlFor="Address" className="form-label">
+              {/* <label htmlFor="Address" className="form-label">
                 Full Address
-              </label>
-              <input
+              </label> */}
+              <TextField
                 type="text"
+                required
+                label="Address"
+                color="secondary"
                 className="form-control"
                 onChange={(e) => setaddress(e.target.value)}
                 onBlur={handleBlur}
@@ -304,16 +361,18 @@ const SignUp = ({ history }) => {
                 id="address"
                 placeholder="Full Address ..."
               />
-              <Error touched={touched.address} message={errors.address} />
+              {/* <Error touched={touched.address} message={errors.address} /> */}
             </div>
 
             {/* city */}
-            <div className="col-md-6">
-              <label htmlFor="city" className="form-label">
+            {/* <div className="col-md-6">
+              {/* <label htmlFor="city" className="form-label">
                 City
-              </label>
-              <input
+              </label> */}
+              {/* <TextField
                 type="text"
+                required
+                label="City"
                 className="form-control"
                 name="city"
                 onChange={handleChange}
@@ -322,10 +381,10 @@ const SignUp = ({ history }) => {
                 value={values.city}
               />
               <Error touched={touched.city} message={errors.city} />
-            </div>
+            </div> */}
 
             {/* state */}
-            <div className="col-md-4">
+            {/* <div className="col-md-4">
               <label htmlFor="state" className="form-label">
                 State
               </label>
@@ -370,10 +429,10 @@ const SignUp = ({ history }) => {
                 <option>West Bengal</option>
               </select>
               <Error touched={touched.state} message={errors.state} />
-            </div>
+            </div> */}
 
             {/* zip */}
-            <div className="col-md-2">
+            {/* <div className="col-md-2">
               <label htmlfor="zip" className="form-label">
                 Zip
               </label>
@@ -387,7 +446,7 @@ const SignUp = ({ history }) => {
                 value={values.zip}
               />
               <Error touched={touched.zip} message={errors.zip} />
-            </div>
+            </div> */} 
             <div className="col-12">
               <button
                 type="submit"

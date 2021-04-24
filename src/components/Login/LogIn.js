@@ -5,11 +5,19 @@ import Button from "@material-ui/core/Button";
 import Joi from "joi-browser";
 import "./style.css";
 import axios from "axios";
+import TextField from '@material-ui/core/TextField';
 import { Link } from "react-router-dom";
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+
   LoginButton: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
     border: 0,
@@ -140,31 +148,36 @@ const LogIn = ({ history }) => {
       ></ToastContainer>
 
       </>
-      <h1 className="text-center pb-4 pt-5">LOG IN</h1>
+      <h1 className="text-center pb-4 pt-5" style={{fontFamily: "cursive"}}>LOG IN</h1>
       <form onSubmit={LoginSubmit}>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
+          {/* <label htmlFor="exampleInputEmail1" className="form-label">
             Email
-          </label>
-          <input
+          </label> */}
+          <TextField
+          required 
+
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             name="email"
+            label="Email"
             // tabIndex={1}
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-          ></input>
+          />
           {errors.email && (
             <div className="alert alert-danger">{errors.email}</div>
           )}
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
+          {/* <label htmlFor="exampleInputPassword1" className="form-label">
             Password
-          </label>
-          <input
+          </label> */}
+          <TextField
+          required
+          label="Password"
             type="password"
             value={password}
             onChange={(e) => setpassword(e.target.value)}
@@ -172,7 +185,7 @@ const LogIn = ({ history }) => {
             // tabIndex={3}
             className="form-control"
             id="exampleInputPassword1"
-          ></input>
+          />
           {errors.password && (
             <div className="alert alert-danger">{errors.password}</div>
           )}
