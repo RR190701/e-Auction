@@ -2,8 +2,8 @@
     background-color: white;
     box-sizing: border-box;
     padding: 18px;
-    width: 32%;
-    margin-bottom: 1.3rem;
+    width: 48%;
+    margin-bottom: 3rem;
     border-radius: 7px;
     box-shadow: 0 20px 20px rgba(39, 39, 39, 0.19), 0 6px 6px rgba(53, 52, 52, 0.23);
 }
@@ -13,7 +13,9 @@
 }
 .auction-title {
     font-weight: bold;
-    font-size: 20px;
+    width: 100%;
+    text-transform: capitalize;
+    font-size: 27px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .auction-organisation{
@@ -53,7 +55,6 @@
 
 .timing-date,
 .timing-time {
-    display: flex;
 }
 
 .timing-content {
@@ -66,6 +67,18 @@
     margin-right: 8px;
     color: #3b3b3b; 
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.counter-value {
+    font-size: 14px;
+    color: #3b3b3b; 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+}
+.counter-number{
+    font-size: 13px;
+    color: #3b3b3b; 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   
 }
 
 

@@ -15,7 +15,7 @@ import login_art4 from "../../assets/images/login4.svg";
  import login_art2 from "../../assets/images/login2.svg";
 // import MenuIcon from "@material-ui/icons/Menu";
 import { Carousel } from "react-bootstrap";
-import UpcomingAuctions from "./../UpcomingAuctions/UpcomingAuctions";
+import ActiveAuctions from "../ActiveAuctions/ActiveAuctions";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
@@ -223,12 +223,12 @@ const TopMenu = ({ history }) => {
             textColor="secondary"
             centered
           >
-            <Tab className="auction-tabs" label="Upcoming Auction" />
+            <Tab className="auction-tabs" label="Active Auction" />
             <Tab className="auction-tabs" label="Result of Auction" />
             <Tab className="auction-tabs" label="Host an Auction" />
           </Tabs>
           <TabPanel value={value} index={0}>
-            <UpcomingAuctions />
+            <ActiveAuctions />
           </TabPanel>
           <TabPanel value={value} index={1}>
             Item Two

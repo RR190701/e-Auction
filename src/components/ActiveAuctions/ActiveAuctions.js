@@ -5,9 +5,9 @@ import "./style.css";
 import AuctionCard from "../../containers/AuctionCard/auctionCard";
 import axios from 'axios';
 
-const UpcomingAuctions = ({history}) => {
+const ActiveAuctions = ({history}) => {
   
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   // const [auctionName, setAuctionName] = useState("");
   const [Data, setData] = useState([]);
   // const [auctioneer, setAuctioneer] = useState("");
@@ -31,9 +31,9 @@ const UpcomingAuctions = ({history}) => {
       setData(data)
     
     } catch (error) {
-      setError(error.response.data.error);
+      console.log(error.response.data.error);
       
-      setError("");
+      // setError("");
     }
   };
   fetchData();
@@ -50,13 +50,14 @@ const UpcomingAuctions = ({history}) => {
         Data.activeAuctions?.map( (auction) => (
           <AuctionCard
           
-          title = {auction.auctioneer}
-           organisation  = {auction.auctionName}
+          title = {auction.auctionName}
+           organisation  = {auction.auctioneer}
            info = {auction.discription}
            date = {auction.timings}
-           time = {auction.date}
+           time = {auction.timings}
           lot = {auction.lot}
            price = {auction.minEstimation}
+           location={auction.location}
   
           ></AuctionCard>
         
@@ -67,4 +68,4 @@ const UpcomingAuctions = ({history}) => {
     </div>
   );
 };
-export default UpcomingAuctions;
+export default ActiveAuctions;

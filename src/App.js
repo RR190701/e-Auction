@@ -17,7 +17,7 @@ const App = () => {
    
      <Router>
      <Navbar></Navbar>
-       <PrivateRoute exact path="/profile" component={Profile}/>
+       <PrivateRoute exact path="/profile/:username" component={Profile}/>
        <Route exact path ='/' exact component = {TopMenu}></Route>
        <Route  exact path ='/log-in' exact component ={LogIn}></Route>
        <Route   exact path ='/sign-up'component ={SignUp}></Route>

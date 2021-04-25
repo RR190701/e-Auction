@@ -4,7 +4,7 @@ import "./Profile.css";
 import SideBar from "./../Profile-sidebar/Sidebar";
 import ProfileBar from "./../Profile-center/ProfileBar";
 
-const Profile = ({ history }) => {
+const Profile = ({ history, match }) => {
   const [error, setError] = useState("");
   const [username, setusername] = useState("");
   const [privateData, setPrivateData] = useState("");
@@ -33,8 +33,8 @@ const Profile = ({ history }) => {
 
         //  const { data } = await axios.get("/api/private/", config);
         // console.log(localStorage.getItem("email"))
-        const { data } = await axios.get(`/api/private/profile/${localStorage.getItem("email")}`, config);
-        // console.log(localStorage.getItem("email"))
+        const { data } = await axios.get(`/api/private/profile/${match.params.username}`, config);
+        console.log(data);
         setPrivateData(data.data);
         setusername(data.user.username)
         setemail(data.user.email)
@@ -43,7 +43,7 @@ const Profile = ({ history }) => {
         setnumber(data.user.number)
       } catch (error) {
         localStorage.removeItem("authToken");
-        localStorage.removeItem("email");
+        localStorage.removeItem("username");
         setError("not authorized");
       }
     };
