@@ -10,6 +10,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 //import PrivateScreen from "./components/privateScreen";
 import Navbar from "./components/Navbar/Navbar"
 import AuctionDetails from './containers/AuctionDetails/AuctionDetails';
+import AllBids from './containers/AllBids/allBids';
 const App = () => {
 
  return(
@@ -21,10 +22,10 @@ const App = () => {
        <Route exact path ='/' exact component = {TopMenu}></Route>
        <Route  exact path ='/log-in' exact component ={LogIn}></Route>
        <Route   exact path ='/sign-up'component ={SignUp}></Route>
-       {/* <Route path="/profile" component ={Profile}></Route> */}
        <Route path = "/ForgetPassword" component ={ForgetPassword}></Route>
        <Route path = "/passwordreset/:resetToken" component ={ResetPassword}></Route>
        <Route path ="/auction/:auctionID" component ={AuctionDetails}></Route>
+       <Route path="/allBids/:auctionID" component ={AllBids}></Route>
      </Router>
    </React.Fragment>
  );

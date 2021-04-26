@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import "./style.css";
 // import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const AuctionDetails = ({match, history}) => {
 
@@ -23,6 +24,7 @@ const AuctionDetails = ({match, history}) => {
   const [timings, setTimings] = useState("");
   const [bid, setBid] = useState("");
   const [error, setError] = useState("");
+  const [username, setUsername] = useState("");
  // const [maxEstimation, setMaxEstimation] = useState("");
 
   useEffect(() => {
@@ -53,6 +55,7 @@ const AuctionDetails = ({match, history}) => {
         setTimings(data.auction.timings);
         setLot(data.auction.lot);
         setAuctionID(data.auction.auctionID);
+        setUsername(localStorage.getItem("username"));
         console.log(auctionID);
 }
 
@@ -92,7 +95,6 @@ else {
 }
 
 //dummy usernsme
-const username = "xyz";
 
 const config = {
 
@@ -196,8 +198,8 @@ placeholder="Enter your max bid"></input>
 </div>
 </div>
   <div className="biding-system-buttons-div">
-    <button className="biding-system-buttons">Back to home</button>
-    <button className="biding-system-buttons">View all Bids</button>
+    <Link className="biding-system-buttons">Back to home</Link>
+    <Link to={`/allBids/${auctionID}`} className="biding-system-buttons">View all Bids</Link>
   </div>
 
 

@@ -44,7 +44,7 @@ const LogIn = ({ history }) => {
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
-      history.push("/profile");
+      history.push(`/profile/${localStorage.getItem("username")}`);
     }
   }, [history]);
 

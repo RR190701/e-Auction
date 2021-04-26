@@ -26,6 +26,7 @@ const Navbar = (props) => {
 
   const logoutHandler = () => {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("username");
     const { history } = props;
     history.push("/log-in");
     //console.log(props);
@@ -55,7 +56,8 @@ const Navbar = (props) => {
           </Typography>
           {localStorage.getItem("authToken") ? (
             <div>
-              <Button className="header" title= "profile"><Link className ="top-navbar-links"  to = "/profile">
+              
+              <Button className="header" ><Link className ="top-navbar-links"  to ={`/profile/${localStorage.getItem("username")}`} >
               <CgProfile fontSize="1.8rem" padding="0" fill="white"/>
               </Link></Button>
               <Button className="header log-out-button" onClick={logoutHandler}>
