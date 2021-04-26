@@ -12,6 +12,7 @@ const Profile = ({ history, match }) => {
   const [profession, setprofession] = useState("");
   const [address, setaddress] = useState("");
   const [age, setage] = useState("");
+  const [about, setabout] = useState("");
   const [number, setnumber] = useState("");
 
   useEffect(() => {
@@ -41,6 +42,8 @@ const Profile = ({ history, match }) => {
         setprofession(data.user.profession)
         setaddress(data.user.address)
         setnumber(data.user.number)
+        setage(data.user.age)
+        setabout(data.user.about)
       } catch (error) {
         localStorage.removeItem("authToken");
         localStorage.removeItem("username");
@@ -57,7 +60,7 @@ const Profile = ({ history, match }) => {
         <SideBar username={username} profession={profession}></SideBar>
       </div>
       <div class="profile-bar">
-        <ProfileBar username={username} email={email}/>
+        <ProfileBar username={username} email={email} age={age} number={number} about={about} address={address} />
 
           <div style={{ backgroundColor: "green" }}>{privateData}</div>
       

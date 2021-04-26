@@ -27,7 +27,7 @@ const Dashboard = (props) => {
    <div className ="contact">
 <div className="phone">
     <span><AiTwotonePhone fontSize="1.5rem" fill="#fa255e"/></span>
-   <span style={{marginLeft: "0.5rem"}}>8146515308</span> 
+   <span style={{marginLeft: "0.5rem"}}>{props.number}</span> 
     
 </div>
 <div className="email">

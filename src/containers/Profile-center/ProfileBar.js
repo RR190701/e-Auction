@@ -71,7 +71,7 @@ const ProfileBar = (props) => {
           </Tabs>
         </AppBar>
         <TabPanel className =" tabpanels" value={value} index={0}>
-            <Dashboard username={props.username} email={props.email} address={props.address} profession={props.profession}></Dashboard>
+            <Dashboard username={props.username} email={props.email} address={props.address} profession={props.profession} number={props.number} age={props.age} about={props.about}></Dashboard>
     </TabPanel>
         <TabPanel  className =" tabpanels" value={value} index={1}>
         </TabPanel>
