@@ -12,7 +12,8 @@ import axios from "axios";
 import CustomCarousel from "../common/CustomCarousel";
 import login_art3 from "../../assets/images/login3.svg";
 import login_art4 from "../../assets/images/login4.svg";
- import login_art2 from "../../assets/images/login2.svg";
+import login_art2 from "../../assets/images/login2.svg";
+import Footer from "../Footer/Footer"
 // import MenuIcon from "@material-ui/icons/Menu";
 import { Carousel } from "react-bootstrap";
 import ActiveAuctions from "../ActiveAuctions/ActiveAuctions";
@@ -24,10 +25,10 @@ import Tab from "@material-ui/core/Tab";
 import Grid from "@material-ui/core/Grid";
 import { Card, CardHeader, CardContent, Divider } from "@material-ui/core";
 import { GiCrucifix } from "react-icons/gi";
-import { ImHammer } from "react-icons/im";
-import { BsArrowLeftRight } from "react-icons/bs";
-import { BiRupee } from "react-icons/bi";
-import { AiOutlineFileDone } from "react-icons/ai";
+import { FaFacebookF } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FiInstagram } from "react-icons/fi";
+import { FaSnapchatGhost } from "react-icons/fa";
 import "./TopMenu.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -77,36 +78,6 @@ const TopMenu = ({ history }) => {
     setValue(newValue);
   };
   
-  // const [error, setError] = useState("");
-  // const [privateData, setPrivateData] = useState("");
-
-  // useEffect(() => {
-  //   if (!localStorage.getItem("authToken")) {
-  //     history.push("/log-in");
-  //   }
-
-  //   const fetchPrivateData = async () => {
-  //     const config = {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-  //       },
-  //     };
-  //     try {
-  //       const { data } = await axios.get("/api/private", config);
-  //       setPrivateData(data.data);
-  //     } catch (error) {
-  //       localStorage.removeItem("authToken");
-  //       setError("not authorized");
-  //     }
-  //   };
-  //   fetchPrivateData();
-  // }, [history]);
-
-  // const logoutHandler = () => {
-  //   localStorage.removeItem("authToken");
-  //   history.push("/log-in");
-  // };
   return (
 
     <div className={classes.root}>
@@ -238,6 +209,8 @@ const TopMenu = ({ history }) => {
           </TabPanel>
         </div>
       </div>
+    
+<Footer></Footer>
     </div>
   );
 };

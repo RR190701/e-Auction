@@ -9,7 +9,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { BiRupee } from "react-icons/bi";
 import { AiFillTag } from "react-icons/ai";
 import { GiRecycle } from "react-icons/gi";
-import { FaHeart } from "react-icons/fa";
+import { RiAuctionLine } from "react-icons/ri";
 import { CgDetailsMore } from "react-icons/cg";
 import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
 import ScheduleTwoToneIcon from "@material-ui/icons/ScheduleTwoTone";
@@ -202,13 +202,13 @@ const AuctionCard = ({
               </Tooltip>
             </div>
           </div>
-          <Tooltip title="Add to Wishlist" arrow>
+          <Tooltip title="Bid" arrow>
             <Button
               variant="contained"
               className="Register-button"
               color="primary"
             >
-              <FaHeart size="1.3rem" />
+              <RiAuctionLine size="1.3rem" />
             </Button>
           </Tooltip>
         </div>
