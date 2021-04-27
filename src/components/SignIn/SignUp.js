@@ -35,7 +35,7 @@ const SignUp = ({ history }) => {
       history.push("/");
     }
   }, [history]);
-  const emailTakens = ["test@gmail.com", "rashikarawat01@gmail.com"];
+  const emailTakens = ["test@gmail.com", "rashikarawat2001@gmail.com"];
 
   //validation schema
   const ValidationSchema = Yup.object().shape({
@@ -124,6 +124,7 @@ const SignUp = ({ history }) => {
         config
       );
       localStorage.setItem("authToken", data.token);
+      localStorage.setItem("username", username);
       history.push("/");
     } catch (error) {
       popError(error.response.data.error);

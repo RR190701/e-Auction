@@ -36,7 +36,7 @@ const Dashboard = (props) => {
 </div>
    </div>
    <div className="Address">
-   <h1 className="dasboard-heading">{props.address}</h1>
+   <h1 className="dasboard-heading">Address details</h1>
    <div className="address-enitity">
        <div className="wedge">country :</div><div className="slant"> India</div>
    </div>
