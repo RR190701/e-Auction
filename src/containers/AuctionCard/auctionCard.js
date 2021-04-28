@@ -8,6 +8,9 @@ import AlarmIcon from "@material-ui/icons/Alarm";
 import Tooltip from "@material-ui/core/Tooltip";
 import { BiRupee } from "react-icons/bi";
 import { AiFillTag } from "react-icons/ai";
+import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { GiRecycle } from "react-icons/gi";
 import { RiAuctionLine } from "react-icons/ri";
 import { CgDetailsMore } from "react-icons/cg";
@@ -16,6 +19,7 @@ import ScheduleTwoToneIcon from "@material-ui/icons/ScheduleTwoTone";
 import Paper from "@material-ui/core/Paper";
 import { Grid } from "@material-ui/core";
 import { BorderLeft } from "@material-ui/icons";
+import { Popover } from "bootstrap";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -33,9 +37,30 @@ const AuctionCard = ({
   lot,
   location,
 }) => {
+  const popError = (errorMessage) => {
+
+    toast.error(errorMessage, {
+      className :"error-toast",
+      position:toast.POSITION.BOTTOM_RIGHT
+    });
+  }
+ const handleBid = (e) => {
+  if(localStorage.getItem("authToken")){
+e.preventDefault()
+console.log("Yes you are logged in")
+  } else {popError("Please Log In First")}
+ }
   const classes = useStyles();
   return (
     <Paper elevation={3} className="auction-card">
+            <>
+      
+      <ToastContainer
+      draggable ={false}
+      autoClose={3000}
+      ></ToastContainer>
+
+      </>
       <div className="auction-card-content">
         <div>
           <div>
@@ -207,6 +232,7 @@ const AuctionCard = ({
               variant="contained"
               className="Register-button"
               color="primary"
+              onClick={handleBid}
             >
               <RiAuctionLine size="1.3rem" />
             </Button>
