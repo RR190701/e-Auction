@@ -20,6 +20,7 @@ import Paper from "@material-ui/core/Paper";
 import { Grid } from "@material-ui/core";
 import { BorderLeft } from "@material-ui/icons";
 import { Popover } from "bootstrap";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -36,6 +37,7 @@ const AuctionCard = ({
   price,
   lot,
   location,
+  auctionID
 }) => {
   const popError = (errorMessage) => {
 
@@ -222,8 +224,9 @@ console.log("Yes you are logged in")
               className="Register-button"
               color="primary"
               onClick={handleBid}
-            >
-              <RiAuctionLine size="1.3rem" />
+            ><Link style={{color:"white"}} to = {`/auction/${auctionID}`}>
+                       <RiAuctionLine size="1.3rem" />
+            </Link>
             </Button>
           </Tooltip>
             </div>

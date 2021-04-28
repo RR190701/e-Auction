@@ -58,6 +58,7 @@ const ActiveAuctions = ({history}) => {
           lot = {auction.lot}
            price = {auction.minEstimation}
            location={auction.location}
+           auctionID={auction.auctionID}
   
           ></AuctionCard>
         
