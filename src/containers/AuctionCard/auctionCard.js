@@ -41,7 +41,7 @@ const AuctionCard = ({
 
     toast.error(errorMessage, {
       className :"error-toast",
-      position:toast.POSITION.BOTTOM_RIGHT
+      position:toast.POSITION.TOP_RIGHT
     });
   }
  const handleBid = (e) => {
@@ -201,33 +201,22 @@ console.log("Yes you are logged in")
         {/* discription of auction */}
         <p className="auction-info">{info}</p>
 
-        <div className="auction-card-footer">
+        <div className="auction-card-footer" style={{justifyContent:"flex-end"}}>
           <div style={{display:"flex"}}>
             <div style={{display:"flex"}}>
               <Tooltip title="Set a Reminder" arrow>
                 <Button
+                  color="primary"
                   variant="contained"
                   style={{ padding: "0.3rem", marginRight: "2.5rem" }}
                   aria-label="add an alarm"
                 >
-                  <AlarmIcon />
+                  <AlarmIcon size="1.3rem"/>
                 </Button>
               </Tooltip>
             </div>
             <div style={{display:"flex"}}>
-              <Tooltip title="More Details" arrow>
-                <Button
-                  variant="contained"
-                  style={{ padding: "0.3rem", fontSize: "1.3rem" }}
-                  color="secondary"
-                  aria-label="More details"
-                >
-                  <CgDetailsMore />
-                </Button>
-              </Tooltip>
-            </div>
-          </div>
-          <Tooltip title="Bid" arrow>
+            <Tooltip title="Bid" arrow>
             <Button
               variant="contained"
               className="Register-button"
@@ -237,6 +226,9 @@ console.log("Yes you are logged in")
               <RiAuctionLine size="1.3rem" />
             </Button>
           </Tooltip>
+            </div>
+          </div>
+          
         </div>
       </div>
     </Paper>
