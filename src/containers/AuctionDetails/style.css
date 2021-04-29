@@ -52,8 +52,9 @@ display: flex;
     /* border:brown solid 2px; */
 }
 .biding {
-
+width: 100%;
 }
+
 
 .biding-in-auction{
     background-color: #ffe4e1;
@@ -172,4 +173,20 @@ padding-left: .8rem;
 }
 .discription{
     margin-top: 1rem;
+}
+
+.result{
+    width: 100%;
+    background-color: #ffe4e1;
+    border: #fa255e 1.5px solid;
+    border-radius: 2px;
+    text-align: center;
+    padding: 2rem;
+    font-weight: bold;
+}
+.time-left{
+    font-weight: bold;
+    margin-right: 0.5rem;
+    text-transform: capitalize;
+    color: blue;
 }

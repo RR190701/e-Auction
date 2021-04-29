@@ -25,7 +25,16 @@ const AuctionDetails = ({match, history}) => {
   const [bid, setBid] = useState("");
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
- // const [maxEstimation, setMaxEstimation] = useState("");
+  const [isEnded, setIsEnded] = useState(false);
+  const [auctionDay,setAuctionDay] =useState("")
+  const [auctionMonth,setAuctionMonth] =useState("")
+  const [auctionYear,setAuctionYear] =useState("")
+  const [auctionHour,setAuctionHour] =useState("")
+  const [auctionMin,setAuctionMin] =useState("")
+  const [dayLeft, setDayLeft] = useState(0);
+  const [hourLeft, setHourLeft] = useState(0);
+  const [minLeft, setMinLeft] = useState(0);
+  const [secLeft, setSecLeft] = useState(0);
 
   useEffect(() => {
 
@@ -57,6 +66,16 @@ const AuctionDetails = ({match, history}) => {
         setAuctionID(data.auction.auctionID);
         setUsername(localStorage.getItem("username"));
         console.log(auctionID);
+
+        const date = new Date(data.auction.timings);
+        if(date-Date.now()<0)setIsEnded(true);
+
+        setAuctionYear(date.getFullYear());
+        setAuctionMonth(date.getMonth()+1);
+        setAuctionDay(date.getDate());
+        setAuctionHour(date.getHours());
+        setAuctionMin(date.getMinutes());
+        console.log(date);
 }
 
       catch(error){
@@ -64,9 +83,32 @@ const AuctionDetails = ({match, history}) => {
       }
     }
 
+
     fetchAuctionDetails();
 
   },[history]);
+
+
+  useEffect(() => {
+    //check if auction ended 
+    if(isEnded)return;
+
+    const interval = setInterval(() => {
+
+      // if(!timings)return;
+
+      const date = new Date(timings);
+      const timeleft = date-Date.now()
+      if(timeleft<0){setIsEnded(true)
+
+    };
+      setDayLeft(Math.floor(timeleft/1000/60/60/24))
+      setHourLeft(Math.floor(timeleft/1000/60/60)%24)
+      setMinLeft(Math.floor(timeleft/1000/60)%60)
+      setSecLeft(Math.floor(timeleft/1000)%60)
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [timings,isEnded]);
 
 
   //bid handler
@@ -180,7 +222,23 @@ try {
            </Magnifier>
            </div>
 
+ 
            <div className ="biding-system">
+             <div style={{display:"flex"}} >
+               <div className="time-left">
+                 Time left:
+               </div>
+               <div style={{fontWeight:"600"}}>
+                 {`${(dayLeft<0)?0:dayLeft}d:${(hourLeft<0)?0:hourLeft}h:${(minLeft<0)?0:minLeft}m:${(secLeft<0)?0:secLeft}s`}
+               </div>
+             </div>
+
+       {
+         isEnded?(
+<div className="result">
+Auction Ended!!
+</div>
+         ):(
 <div className ="biding">
 
 <div className="biding-in-auction">
@@ -201,9 +259,9 @@ placeholder="Enter your max bid"></input>
     <Link className="biding-system-buttons">Back to home</Link>
     <Link to={`/allBids/${auctionID}`} className="biding-system-buttons">View all Bids</Link>
   </div>
-
-
 </div>
+         )
+       }      
 
            <div className = "auctioneer-details">
     <div className = "auctioneer-details-fir">Auctioneer:</div>
@@ -214,8 +272,15 @@ placeholder="Enter your max bid"></input>
     <div className = "auctioneer-details-sec">{minEstimation} - {maxEstimation}</div>
     <div className = "auctioneer-details-fir">Location:</div>
     <div className = "auctioneer-details-sec">{location}</div>
-    <div className = "auctioneer-details-fir">Timings:</div>
-    <div className = "auctioneer-details-sec">{timings}</div>
+    {
+      isEnded?(
+        <div className = "auctioneer-details-fir">Ended on:</div>
+      ):(
+        <div className = "auctioneer-details-fir">Ending on:</div>
+      )
+    }
+    
+    <div className = "auctioneer-details-sec">{`${auctionDay}/${auctionMonth}/${auctionYear}  ${auctionHour}:${auctionMin}`}</div>
  
   </div>
 
