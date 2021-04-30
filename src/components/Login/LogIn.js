@@ -7,6 +7,7 @@ import "./style.css";
 import axios from "axios";
 import TextField from '@material-ui/core/TextField';
 import { Link } from "react-router-dom";
+import Footer from "../Footer/Footer"
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -140,6 +141,7 @@ const LogIn = ({ history }) => {
   //  }
 
   return (
+    <div>
     <Paper className="LoginPaper" elevation={3}>
       <>
       
@@ -210,7 +212,12 @@ const LogIn = ({ history }) => {
         </div>
       
       </form>
+      
     </Paper>
+    <div>
+      <Footer></Footer>
+    </div>
+    </div>
   );
 };
 

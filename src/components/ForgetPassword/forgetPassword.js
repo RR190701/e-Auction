@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 // import Joi from "joi-browser";
 import "./style.css";
+import Footer from "../Footer/Footer"
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -135,6 +136,7 @@ const ForgetPassword = (history) => {
 
 
     return ( 
+      <div>
 <Paper className="ForgetPasswordPaper" elevation={3}>
 
 <>
@@ -168,6 +170,10 @@ const ForgetPassword = (history) => {
 </form>
     
 </Paper>
+<div>
+  <Footer/>
+</div>
+</div>
      );
 }
  

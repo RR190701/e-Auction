@@ -37,12 +37,6 @@ const useStyles = makeStyles((theme) => ({
     
     marginTop: "5rem"
   },
-  // menuButton: {
-  //   marginRight: theme.spacing(1),
-  // },
-  // title: {
-  //   flexGrow: 1,
-  // },
 }));
 
 function TabPanel(props, { history }) {
@@ -81,49 +75,7 @@ const TopMenu = ({ history }) => {
   return (
 
     <div className={classes.root}>
-      {/* <hr /> */}
-
-      {/* <Button className="raise" startIcon={ <BsArrowLeftRight/>}>
-           
-            Correngidum
-          </Button>
-          <hr style={{marginRight: '2rem'}}/> */}
-
-      {/* <Button  className="raise" startIcon={<BiRupee/> }>
-            
-            Auctions By Value
-          </Button>
-          <hr style={{marginRight: '2rem'}}/> */}
-      {/* <Button  className="raise" startIcon={<BiRupee/> }>
-            
-            Auctions By Org
-          </Button>
-          <hr style={{marginRight: '1rem'}}/>
-          <Button  className="raise" startIcon={<BiRupee/> }>
-            
-            Auctions By Prod Category
-          </Button> */}
-
-      {/* <hr/> */}
-      {/* <div>
-         <Card>
-<Grid container direction="row">
-  <Card >
-    <CardContent style={{ padding: '0.4rem'}}>
-     <Grid container>
-       <Grid  style={{backgroundColor: '#0bb7a7', borderRadius: '4px'}} item xs={6}>
-         <ImHammer/>
-       </Grid>
-       <Grid style={{ fontSize: '1rem'}}  item xs={6}>
-         Auctions 
-       </Grid>
-     </Grid>
-    </CardContent>
-  </Card>
-  </Grid>
-  </Card>
-  
-</div> */}
+    
       <hr />
       <Grid container direction="col" justify="start">
         <Grid item xs={1}></Grid>
@@ -146,13 +98,14 @@ const TopMenu = ({ history }) => {
           <Card>
             <CardHeader
               title={
-                <h4 style={{ color: "#fa255e", fontFamily: "popins" }}>
-                  Overview
+                <h4 style={{ color: "#fa255e", fontFamily: "sans-serif", marginBottom: '0' }}>
+                  Our Project Overview
                 </h4>
               }
             />
+            <hr style={{margin: '0', padding: '0'}}/>
             <CardContent>
-              <text style={{ fontFamily: "popins" }}>
+              <text style={{ fontFamily: "cursive" }}>
                 Type keywords relative to your project to find the illustrations
                 you need.Type keywords relative to your project to find the
                 illustrations you need.Type keywords relative to your project to
@@ -196,7 +149,7 @@ const TopMenu = ({ history }) => {
           >
             <Tab className="auction-tabs" label="Active Auction" />
             <Tab className="auction-tabs" label="Result of Auction" />
-            <Tab className="auction-tabs" label="Host an Auction" />
+           
           </Tabs>
           <TabPanel value={value} index={0}>
             <ActiveAuctions />
@@ -204,9 +157,7 @@ const TopMenu = ({ history }) => {
           <TabPanel value={value} index={1}>
             Item Two
           </TabPanel>
-          <TabPanel value={value} index={2}>
-            Item Three
-          </TabPanel>
+          
         </div>
       </div>
     

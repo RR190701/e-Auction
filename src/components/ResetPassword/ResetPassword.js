@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import "./style.css";
 import axios from 'axios';
 import { Formik } from "formik";
+import Footer from "../Footer/Footer"
 import * as Yup from "yup";
 import Error from "./../SignIn/Error";
 import { Link } from "react-router-dom";
@@ -108,8 +109,10 @@ const ResetPassword = ({match}) => {
 
 
   return (
+    <div>
     <Formik
     // initialValues={{
+
     //   password: "",
     //   confirmPassword: "",
     // }}
@@ -178,6 +181,10 @@ const ResetPassword = ({match}) => {
       </Paper>
     )}
   </Formik>
+  <div>
+    <Footer/>
+  </div>
+  </div>
  
   );
 };

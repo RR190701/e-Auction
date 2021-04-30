@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "../Footer/Footer"
 import { Link } from "react-router-dom";
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 const useStyles = makeStyles((theme) => ({
@@ -139,6 +140,7 @@ const SignUp = ({ history }) => {
   //removing confirmPassword
 
   return (
+    <div>
     <Formik
       initialValues={{
         // fullname: "",
@@ -461,6 +463,10 @@ const SignUp = ({ history }) => {
         </Paper>
       )}
     </Formik>
+    <div>
+      <Footer/>
+    </div>
+    </div>
   );
 };
 
