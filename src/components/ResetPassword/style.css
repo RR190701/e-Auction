@@ -5,6 +5,13 @@
     padding: 0 3rem 3rem;
     margin: 5rem auto;
    }
+
+   .success-message{
+     font-weight: 600;
+     text-transform: capitalize;
+     color: #32CD32;
+   }
+
    @media(max-width:445px){
 
     .ResetPasswordPaper {

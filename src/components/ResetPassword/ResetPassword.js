@@ -10,6 +10,9 @@ import * as Yup from "yup";
 import Error from "./../SignIn/Error";
 import { Link } from "react-router-dom";
 
+import { ImCheckmark } from "react-icons/im";
+
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -135,7 +138,12 @@ const ResetPassword = ({match}) => {
         {/* reset password heading */}
         <h2 className="text-center pb-4 pt-5">RESET PASSWORD</h2>
         <form onSubmit={ResetPasswordHandler} className="row g-3">
-        {success && <span className="success-message">{success} <Link to="/log-in">login</Link></span>}
+        {success && <span className="success-message">
+          <ImCheckmark
+          fontSize="1.3rem"
+          style={{marginRight:".2rem", marginBottom:".2rem"}} >
+            </ImCheckmark>
+            {success} <Link to="/log-in">login</Link></span>}
 
           {/* password */}
           <div className="col-md-12">
