@@ -77,9 +77,9 @@ const TopMenu = ({ history }) => {
     <div className={classes.root}>
     
       <hr />
-      <Grid container direction="col" justify="start">
-        <Grid item xs={1}></Grid>
-        <Grid item xs={6}>
+      <Grid container direction="col" justify="start" style={{border: '2px solid #fa255e '}}>
+        
+        <Grid item xs={6} style={{backgroundColor: "#fa255e"}}>
           <CustomCarousel navButtonsAlwaysVisible={false} autoPlay={true}>
             <div>
               <img src={login_art2} alt="login art 2" width="60%" />
@@ -94,7 +94,7 @@ const TopMenu = ({ history }) => {
           {/* </CardContent>
 </Card> */}
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={6}>
           <Card>
             <CardHeader
               title={
