@@ -43,6 +43,7 @@ const HostAuction = () => {
           position:toast.POSITION.BOTTOM_RIGHT
         });
       }
+      const [ checked, setChecked ] = useState(false);
     const [auctionName, setauctionName] = useState("");
     const [status, setstatus] = useState("");
     const [auctioneer, setauctioneer] = useState("");
@@ -55,6 +56,10 @@ const HostAuction = () => {
     const [ auctionID, setauctionID] = useState("");
     const [error, setError] = useState("");
     const classes = useStyles();
+    const HandleChecked = () => {
+      setChecked(true);
+      console.log(checked)
+    }
     const HandleSubmit = async (e) => {
         e.preventDefault();
         const config = {
@@ -94,7 +99,7 @@ const HostAuction = () => {
       </>
       <h2 className="text-center pb-0 pt-2" style={{fontFamily: "cursive"}}>Host An Auction</h2>
       <div className="HostingTime"   style={{maxHeight: '30rem', overflow: 'scroll', overflowX: 'hidden'}}>
-      <form onSubmit={HandleSubmit} style={{padding: '2rem'}}>
+      <form onSubmit={HandleSubmit} style={{paddingRight: '2rem', paddingTop: '2rem', paddingBottom: '2rem'}}>
         <div className="col-md-12">
           {/* <label htmlFor="exampleInputEmail1" className="form-label">
             Email
@@ -287,23 +292,32 @@ const HostAuction = () => {
             <div className="alert alert-danger">{errors.password}</div>
           )} */}
         </div>
+        <div className="checkbox-area" style={{display: 'flex',  flexWrap: 'wrap', paddingTop: '1rem'}}>
+          <div className="checkbox" style={{ flexWrap: 'wrap', paddingRight: '1rem'}}>
+          <label class="container"><span style={{fontSize: '0.9rem'}}>I have read understood and agree to E-auction <Link>Privacy</Link> and <Link>Terms and conditions</Link></span> 
+<input type="checkbox" onClick={HandleChecked}/>
+<span class="checkmark" style={{marginTop: '0.9rem'}}></span>
+</label>
+          </div>
+          {/* <div style={{display: 'flex', flexWrap: 'wrap'}}> 
+<span style={{fontSize: '0.8rem'}}>I have read understood and agree to E-auction <Link>Privacy</Link> and <Link>Terms and conditions</Link> </span>
+          </div> */}
+
+        </div>
+        { checked === true ? (
         <div className="text-center pt-3">
           <Button type="submit" tabIndex={4} className={classes.LoginButton}>
             Register
           </Button>
+        </div>) : (
+          <div className="text-center pt-3">
+          <Button disabled type="submit" tabIndex={4} className={classes.LoginButton}>
+            Register
+          </Button>
         </div>
-
-        {/* <div className = "helpful-link"> */}
-        {/* <Link to="/ForgetPassword" style = {{"textDecoration":"none"}} tabIndex={2}>
-              Forget Password?
-            </Link>
-           
-        <Link to="/sign-up" style = {{"marginLeft":".5rem", "textDecoration":"none"}} tabIndex={2}>
-              Create a new account.
-            </Link> */}
-          
-       
-        {/* </div> */}
+        )
+}
+      
       
       </form>
       </div>
