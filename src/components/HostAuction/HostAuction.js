@@ -68,9 +68,9 @@ const HostAuction = () => {
             { auctionID, auctionName, lot, auctioneer, minEstimation, maxEstimation, discription, location, timings, status},
             config
           );
-          localStorage.setItem("authToken", data.token);
+          // localStorage.setItem("authToken", data.token);
         //   localStorage.setItem("username", username);
-        //   history.push("/");
+          // history.push("/");
         popError("registered successfully");
         } catch (error) {
         //   popError(error.response.data.error);
@@ -92,9 +92,10 @@ const HostAuction = () => {
       ></ToastContainer>
 
       </>
-      <h2 className="text-center pb-0 pt-0" style={{fontFamily: "cursive"}}>Host An Auction</h2>
-      <form onSubmit={HandleSubmit} >
-        <div className="col-md-10">
+      <h2 className="text-center pb-0 pt-2" style={{fontFamily: "cursive"}}>Host An Auction</h2>
+      <div className="HostingTime"   style={{maxHeight: '30rem', overflow: 'scroll', overflowX: 'hidden'}}>
+      <form onSubmit={HandleSubmit} style={{padding: '2rem'}}>
+        <div className="col-md-12">
           {/* <label htmlFor="exampleInputEmail1" className="form-label">
             Email
           </label> */}
@@ -115,7 +116,7 @@ const HostAuction = () => {
             <div className="alert alert-danger">{errors.email}</div>
           )} */}
         </div>
-        <div className="col-md-10">
+        <div className="col-md-12">
           {/* <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label> */}
@@ -134,7 +135,7 @@ const HostAuction = () => {
             <div className="alert alert-danger">{errors.password}</div>
           )} */}
         </div>
-        <div className="col-md-10">
+        <div className="col-md-12">
           {/* <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label> */}
@@ -153,7 +154,7 @@ const HostAuction = () => {
             <div className="alert alert-danger">{errors.password}</div>
           )} */}
         </div>
-        <div className="col-md-10">
+        <div className="col-md-12">
           {/* <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label> */}
@@ -172,7 +173,7 @@ const HostAuction = () => {
             <div className="alert alert-danger">{errors.password}</div>
           )} */}
         </div>
-        <div className="col-md-10">
+        <div className="col-md-12">
           {/* <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label> */}
@@ -191,7 +192,7 @@ const HostAuction = () => {
             <div className="alert alert-danger">{errors.password}</div>
           )} */}
         </div>
-        <div className="col-md-10">
+        <div className="col-md-12">
           {/* <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label> */}
@@ -210,7 +211,7 @@ const HostAuction = () => {
             <div className="alert alert-danger">{errors.password}</div>
           )} */}
         </div>
-        <div className="col-md-10">
+        <div className="col-md-12">
           {/* <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label> */}
@@ -229,13 +230,13 @@ const HostAuction = () => {
             <div className="alert alert-danger">{errors.password}</div>
           )} */}
         </div>
-        <div className="col-md-10">
+        <div className="col-md-12">
           {/* <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label> */}
           <TextField
           required
-          label="Timings"
+          label="Location"
             type="text"
             value={location}
             onChange={(e) => setlocation(e.target.value)}
@@ -248,7 +249,7 @@ const HostAuction = () => {
             <div className="alert alert-danger">{errors.password}</div>
           )} */}
         </div>
-        <div className="col-md-10">
+        <div className="col-md-12">
           {/* <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label> */}
@@ -267,7 +268,7 @@ const HostAuction = () => {
             <div className="alert alert-danger">{errors.password}</div>
           )} */}
         </div>
-        <div className="col-md-10">
+        <div className="col-md-12">
           {/* <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label> */}
@@ -305,7 +306,7 @@ const HostAuction = () => {
         {/* </div> */}
       
       </form>
-      
+      </div>
     </Paper>
         </div>
     )
