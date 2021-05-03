@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./style.css";
 // import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import AllBids from './../AllBids/allBids';
 
 const AuctionDetails = ({match, history}) => {
 
@@ -35,6 +36,7 @@ const AuctionDetails = ({match, history}) => {
   const [hourLeft, setHourLeft] = useState(0);
   const [minLeft, setMinLeft] = useState(0);
   const [secLeft, setSecLeft] = useState(0);
+  const [totalBids, setTotalBids] = useState(0);
 
   useEffect(() => {
 
@@ -64,6 +66,7 @@ const AuctionDetails = ({match, history}) => {
         setTimings(data.auction.timings);
         setLot(data.auction.lot);
         setAuctionID(data.auction.auctionID);
+        setTotalBids(data.auction.allBids.length);
         setUsername(localStorage.getItem("username"));
         console.log(auctionID);
 
@@ -252,11 +255,12 @@ className="bid-input"
 placeholder="Enter your max bid"></input>
 <button onClick={placeBidHandler} className="bid-button">Place Bid</button>
 {error && <span className ="biding-price-error">{error}</span>}
+<span className="total-bids-span">[<span className="total-bids">{totalBids}</span>]bids</span>
 <span className="bid-span">~You can bid at a minimum of {minEstimation}</span>
 </div>
 </div>
   <div className="biding-system-buttons-div">
-    <Link className="biding-system-buttons">Back to home</Link>
+    <Link to ="/" className="biding-system-buttons">Back to home</Link>
     <Link to={`/allBids/${auctionID}`} className="biding-system-buttons">View all Bids</Link>
   </div>
 </div>

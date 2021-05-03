@@ -190,3 +190,12 @@ padding-left: .8rem;
     text-transform: capitalize;
     color: blue;
 }
+.total-bids-span{
+    width: 100%;
+    margin-left: .3rem;
+    font-weight: 700
+
+}
+.total-bids{
+    color: blue;
+}
