@@ -108,6 +108,7 @@ const ConfirmBid = async() =>{
   
   
     setBid("");
+    setOpen(false);
   }
 
 const body = (
