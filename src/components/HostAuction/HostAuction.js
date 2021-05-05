@@ -88,7 +88,7 @@ const HostAuction = () => {
       };
     return(
         <div>
-<Paper className="RegisterPaper" elevation={3}>
+<Paper className="hostAuctionPaper" elevation={3}>
       <>
       
       <ToastContainer

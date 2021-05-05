@@ -1,10 +1,10 @@
-.RegisterPaper {
-    width: 42%;
+.hostAuctionPaper {
+    width: 52%;
     box-sizing: border-box;
     border-radius: 5px;
-    padding: 0 3rem 3rem;
-    margin: 6rem auto 3rem;
- 
+    padding:1.5rem 3rem 2rem;
+    margin: 2rem auto 2rem!important;
+   
     
    }
 

@@ -143,6 +143,8 @@ text-transform: capitalize;
     text-transform: capitalize;
     font-size: 14px;
     
+    text-decoration: none;
+    
    /* // box-shadow: 0 5px #fa255e; */
     background-color:#fdbcb4;
     
@@ -198,4 +200,14 @@ padding-left: .8rem;
 }
 .total-bids{
     color: blue;
+}
+.modal-body{
+    position: absolute;
+    width: 550px;
+    padding:0;
+
+}
+.rupee-symbol{
+    margin-bottom: 0.3rem;
+    padding: 0!important;
 }

@@ -5,12 +5,14 @@ import Magnifier from "react-magnifier";
 import { ImHammer2 } from "react-icons/im";
 import { ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
+import Modal from '@material-ui/core/Modal';
+import { BiRupee} from "react-icons/bi";
+import { FaRupeeSign} from "react-icons/fa";
 import "./style.css";
 // import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AllBids from './../AllBids/allBids';
+import { Button } from '@material-ui/core';
 
 const AuctionDetails = ({match, history}) => {
 
@@ -37,6 +39,107 @@ const AuctionDetails = ({match, history}) => {
   const [minLeft, setMinLeft] = useState(0);
   const [secLeft, setSecLeft] = useState(0);
   const [totalBids, setTotalBids] = useState(0);
+
+  //modal rand() function
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+//modal variables
+const [modalStyle] = React.useState(getModalStyle);
+const [open, setOpen] = React.useState(false);
+
+
+// const handleOpen = () => {
+//   setOpen(true);
+// };
+
+const handleClose = () => {
+  setOpen(false);
+};
+
+const ConfirmBid = async() =>{
+  
+  const config = {
+  
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  
+  //sending bid
+  try {
+    const { data } = await axios.post(
+      `/api/auction/registerBid/${auctionID}`,
+      { username, bid },
+      config
+    );
+   
+    console.log(data.data);
+    toast.success(data.data, {
+      className :"error-toast",
+      position:toast.POSITION.TOP_CENTER
+    });
+  
+  
+    
+  } catch (error) {
+  
+    console.log(error.response.data.error);
+        toast.error(error.response.data.error, {
+        className :"error-toast",
+        position:toast.POSITION.TOP_CENTER
+      });
+  
+    // setTimeout(() => {
+    //   setErrors("");
+    // }, 5000);
+  }
+  
+  
+    setBid("");
+  }
+
+const body = (
+  <Paper elevation={3} style={modalStyle}  className="modal-body">
+<div style={{width:"100%", padding:"1.5rem 1rem"}}>
+<div style={{fontSize:"26px", fontWeight:"700", width:"100%"}}>
+  INR <FaRupeeSign size="1.5rem" class="rupee-symbol" ></FaRupeeSign>{bid}
+</div>
+<div style={{fontSize:"19px", color:"#D2042D", fontWeight:"bold"}} >
+{`${(dayLeft<0)?0:dayLeft}d ${(hourLeft<0)?0:hourLeft}h ${(minLeft<0)?0:minLeft}m ${(secLeft<0)?0:secLeft}s`}
+<span style={{fontSize:"14px", color:"black", fontWeight:"600", borderLeft:"black 1.5px solid", marginLeft:".4rem", paddingLeft:".4rem"}}>{totalBids} Bids</span>
+</div>
+</div>
+<div  style={{backgroundColor:"#ffe4e1", width:"100%", padding:"1rem 1rem", display:"flex", justifyContent:"space-between"}}>
+<div  style={{display:"flex"}}>
+<div style={{fontSize:"14px",paddingTop:"0.5rem", marginRight:"0.3rem", fontWeight:"600"}}>
+Your bid amount:
+  </div>
+<span style={{fontSize:"26px", fontWeight:"700"}}>
+  INR <FaRupeeSign size="1.5rem" class="rupee-symbol"></FaRupeeSign>{bid}</span>
+</div>
+<Button variant="contained" color="primary"
+style={{padding:".5rem 2.7rem"}}
+onClick={ConfirmBid}>
+  Confirm
+</Button>
+</div>
+<div style={{padding:"1rem", fontSize:"14px", width:"100%"}}>
+By clicking <span style={{fontWeight:"600"}}>Confirm</span> you commit to buy this item from the seller if you are the winning bidder.
+</div>
+  </Paper>
+);
 
   useEffect(() => {
 
@@ -139,49 +242,12 @@ else {
   
 }
 
-//dummy usernsme
-
-const config = {
-
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
-
-//sending bid
-try {
-  const { data } = await axios.post(
-    `/api/auction/registerBid/${auctionID}`,
-    { username, bid },
-    config
-  );
- 
-  console.log(data.data);
-  toast.success(data.data, {
-    className :"error-toast",
-    position:toast.POSITION.TOP_CENTER
-  });
-
-
-  
-} catch (error) {
-
-  console.log(error.response.data.error);
-      toast.error(error.response.data.error, {
-      className :"error-toast",
-      position:toast.POSITION.TOP_CENTER
-    });
-
-  // setTimeout(() => {
-  //   setErrors("");
-  // }, 5000);
-}
-
-
-  setBid("");
+//calling for confirmation
+setOpen(true);
 
 
 };
+
 
 
 
@@ -238,11 +304,11 @@ try {
 
        {
          isEnded?(
-<div className="result">
+<Paper elevation={3} className="result">
 Auction Ended!!
-</div>
+</Paper>
          ):(
-<div className ="biding">
+<Paper elevation={3} className ="biding">
 
 <div className="biding-in-auction">
 <div className ="bid-form">
@@ -263,7 +329,7 @@ placeholder="Enter your max bid"></input>
     <Link to ="/" className="biding-system-buttons">Back to home</Link>
     <Link to={`/allBids/${auctionID}`} className="biding-system-buttons">View all Bids</Link>
   </div>
-</div>
+</Paper>
          )
        }      
 
@@ -298,6 +364,16 @@ placeholder="Enter your max bid"></input>
          {discription}
         </p>
         </div>
+
+        {/* modal */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        {body}
+      </Modal>
 
         </Paper>
     
