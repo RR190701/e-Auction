@@ -26,7 +26,18 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
     },
+    
   },
+  tooltip: {
+    maxWidth: '200px',
+},
+tooltipPlacementTop: {
+    margin: '4px 0',
+},
+tooltipPlacementBottom: {
+    margin: '4px 0',
+},
+  
 }));
 const AuctionCard = ({
   title,
@@ -218,7 +229,7 @@ console.log("Yes you are logged in")
               </Tooltip>
             </div>
             <div style={{display:"flex"}}>
-            <Tooltip title="Bid" arrow>
+            <Tooltip title="Bid" classes={classes} arrow>
             <Button
               variant="contained"
               className="Register-button"
