@@ -109,7 +109,9 @@ const TopMenu = ({ history }) => {
             <hr style={{margin: '0', padding: '0', color: 'solid #fa255e', height: '3px'}}/>
             <CardContent>
               <text style={{ fontFamily: "cursive" }}>
-            
+             eAuction is an easy to understand, online auction platform, where you can bid on auctions or can host one easily
+             it lists all the active auctions and helps to search a perfect one for you that you can bid on the goods you want.
+             eAuction makes it easy for you to access all the bids made on an auction, so that you can always bid highest.
               </text>
             </CardContent>
           </Card>
