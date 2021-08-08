@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 // import Carousel from 'react-bootstrap/Carousel'
 // import Button from "@material-ui/core/Button";
 // import IconButton from "@material-ui/core/IconButton";
+
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -30,6 +31,8 @@ import { FaTwitter } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 import { FaSnapchatGhost } from "react-icons/fa";
 import "./TopMenu.css";
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -95,7 +98,7 @@ const TopMenu = ({ history }) => {
 </Card> */}
         </Grid>
         <Grid item xs={6}>
-          <Card>
+          <Card style={{height: '100%'}}>
             <CardHeader
               title={
                 <h4 style={{ color: "#fa255e", fontFamily: "sans-serif", marginBottom: '0' }}>
@@ -103,7 +106,7 @@ const TopMenu = ({ history }) => {
                 </h4>
               }
             />
-            <hr style={{margin: '0', padding: '0'}}/>
+            <hr style={{margin: '0', padding: '0', color: 'solid #fa255e', height: '3px'}}/>
             <CardContent>
               <text style={{ fontFamily: "cursive" }}>
                 Type keywords relative to your project to find the illustrations
@@ -152,15 +155,16 @@ const TopMenu = ({ history }) => {
            
           </Tabs>
           <TabPanel value={value} index={0}>
-            <ActiveAuctions />
+            <Paper>  <ActiveAuctions /></Paper>
+          
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Item Two
+          Item Two
           </TabPanel>
           
         </div>
       </div>
-    
+    <hr />
 <Footer></Footer>
     </div>
   );

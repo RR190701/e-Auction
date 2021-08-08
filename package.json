@@ -1,7 +1,7 @@
 {
   "name": "e-auction",
   "version": "0.1.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://lit-peak-91776.herokuapp.com",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.2",
@@ -26,6 +26,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-toastify": "^7.0.3",
+    "swiper": "^6.6.1",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.8"
   },

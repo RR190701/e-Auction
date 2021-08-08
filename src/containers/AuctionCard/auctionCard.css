@@ -15,7 +15,7 @@
     font-weight: bold;
     width: 100%;
     text-transform: capitalize;
-    font-size: 27px;
+    font-size: 1.5rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .auction-organisation{
@@ -41,7 +41,7 @@
     width: 80px!important;
     font-size: 10px!important;
     text-transform: none!important;
-    background-color:#fa255e!important;
+    background-color:#f05881!important;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
