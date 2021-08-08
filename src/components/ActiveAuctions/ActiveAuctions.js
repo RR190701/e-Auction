@@ -39,7 +39,7 @@ const ActiveAuctions = ({history}) => {
     try {
 
  
-      const { data } = await axios.get('api/auction/activeAuctions');
+      const { data } = await axios.get('https://lit-peak-91776.herokuapp.com/api/auction/activeAuctions');
       // console.log(localStorage.getItem("email"))
       setData(data)
     
