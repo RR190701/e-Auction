@@ -47,7 +47,7 @@ const ForgetPassword = (history) => {
             },
         };
         try{
-            const {data} = await axios.post("/api/auth/forgetpassword", {email}, config);
+            const {data} = await axios.post("https://lit-peak-91776.herokuapp.com/api/auth/forgetpassword", {email}, config);
 
             toast.success(data.data, {
               className :"error-toast",

@@ -57,7 +57,7 @@ const ResetPassword = ({match}) => {
         }
         try{
        
-            const {data} = await axios.put(`/api/auth/resetpassword/${match.params.resetToken}`,{password}, config);
+            const {data} = await axios.put(`https://lit-peak-91776.herokuapp.com/api/auth/resetpassword/${match.params.resetToken}`,{password}, config);
             setSuccess(data.data)
              
         }catch (error) {

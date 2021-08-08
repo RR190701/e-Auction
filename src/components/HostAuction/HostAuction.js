@@ -69,7 +69,7 @@ const HostAuction = () => {
         };
         try {
           const { data } = await axios.post(
-            "/api/auction/registerAuction",
+            "https://lit-peak-91776.herokuapp.com/api/auction/registerAuction",
             { auctionID, auctionName, lot, auctioneer, minEstimation, maxEstimation, discription, location, timings, status},
             config
           );

@@ -80,7 +80,7 @@ const ConfirmBid = async() =>{
   //sending bid
   try {
     const { data } = await axios.post(
-      `/api/auction/registerBid/${auctionID}`,
+      `https://lit-peak-91776.herokuapp.com/api/auction/registerBid/${auctionID}`,
       { username, bid },
       config
     );
@@ -160,7 +160,7 @@ By clicking <span style={{fontWeight:"600"}}>Confirm</span> you commit to buy th
       //fetching data
       try{
 
-        const { data } = await axios.get(`/api/auction/biding/${match.params.auctionID}`, config);
+        const { data } = await axios.get(`https://lit-peak-91776.herokuapp.com/api/auction/biding/${match.params.auctionID}`, config);
         setAuctionName(data.auction.auctionName);
         setDiscription(data.auction.discription);
         setMinEstimation(data.auction.minEstimation);

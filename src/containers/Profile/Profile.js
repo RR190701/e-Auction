@@ -34,7 +34,7 @@ const Profile = ({ history, match }) => {
 
         //  const { data } = await axios.get("/api/private/", config);
         // console.log(localStorage.getItem("email"))
-        const { data } = await axios.get(`/api/private/profile/${match.params.username}`, config);
+        const { data } = await axios.get(`https://lit-peak-91776.herokuapp.com/api/private/profile/${match.params.username}`, config);
         console.log(data);
         setPrivateData(data.data);
         setusername(data.user.username)

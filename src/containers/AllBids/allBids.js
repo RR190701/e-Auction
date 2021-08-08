@@ -88,7 +88,7 @@ const makeRows = () =>{
         //fetching data
         try{
     
-          const { data } = await axios.get(`/api/auction/allBids/${match.params.auctionID}`, config);
+          const { data } = await axios.get(`https://lit-peak-91776.herokuapp.com/api/auction/allBids/${match.params.auctionID}`, config);
           setAllbids(data.allBids);  
           makeRows()
          

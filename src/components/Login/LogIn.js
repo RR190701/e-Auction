@@ -79,7 +79,7 @@ const LogIn = ({ history }) => {
 
     try {
       const { data } = await axios.post(
-        "/api/auth/login",
+        "https://lit-peak-91776.herokuapp.com/api/auth/login",
         { email, password },
         config
       );

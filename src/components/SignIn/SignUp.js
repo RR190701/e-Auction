@@ -120,7 +120,7 @@ const SignUp = ({ history }) => {
     };
     try {
       const { data } = await axios.post(
-        "/api/auth/register",
+        "https://lit-peak-91776.herokuapp.com/api/auth/register",
         { username, email, password, number, age, profession, address },
         config
       );
