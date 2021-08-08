@@ -101,7 +101,7 @@ const TopMenu = ({ history }) => {
           <Card style={{height: '100%'}}>
             <CardHeader
               title={
-                <h4 style={{ color: "#fa255e", fontFamily: "sans-serif", marginBottom: '0' }}>
+                <h4 style={{ color: "#fa255e", fontFamily: "Poppins, sans-serif", marginBottom: '0' }}>
                   Our Project Overview
                 </h4>
               }
@@ -109,27 +109,7 @@ const TopMenu = ({ history }) => {
             <hr style={{margin: '0', padding: '0', color: 'solid #fa255e', height: '3px'}}/>
             <CardContent>
               <text style={{ fontFamily: "cursive" }}>
-                Type keywords relative to your project to find the illustrations
-                you need.Type keywords relative to your project to find the
-                illustrations you need.Type keywords relative to your project to
-                find the illustrations you need.Type keywords relative to your
-                project to find the illustrations you need.Type keywords
-                relative to your project to find the illustrations you need.Type
-                keywords relative to your project to find the illustrations you
-                need.Type keywords relative to your project to find the
-                illustrations you need. Type keywords relative to your project
-                to find the illustrations you need.Type keywords relative to
-                your project to find the illustrations you need.Type keywords
-                relative to your project to find the illustrations you need.
-                Type keywords relative to your project to find the illustrations
-                you need.Type keywords relative to your project to find the
-                illustrations you need. Type keywords relative to your project
-                to find the illustrations you need. Type keywords relative to
-                your project to find the illustrations you need.Type keywords
-                relative to your project to find the illustrations you need.
-                Type keywords relative to your project to find the illustrations
-                you need. Type keywords relative to your project to find the
-                illustrations you need.
+            
               </text>
             </CardContent>
           </Card>

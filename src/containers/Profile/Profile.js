@@ -51,7 +51,7 @@ const Profile = ({ history, match }) => {
       }
     };
     fetchPrivateData();
-  }, [history]);
+  }, [history,match.params.username]);
 
 
   return (
