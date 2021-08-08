@@ -31,7 +31,7 @@ import { FaTwitter } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 import { FaSnapchatGhost } from "react-icons/fa";
 import "./TopMenu.css";
-import FileUpload from "../uploadImage";
+
 
 
 const useStyles = makeStyles((theme) => ({
